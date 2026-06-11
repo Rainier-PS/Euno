@@ -13,11 +13,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="StudyHub — Wellness &amp; Study Companion">
 <meta name="twitter:description" content="Track your mood, build healthy habits, and stay focused with StudyHub.">
-<title>StudyHub</title>
+<title>StudyHub - Home</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/index.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"StudyHub","description":"Student wellness and study companion app","applicationCategory":"EducationalApplication","operatingSystem":"Any"}</script>
 </head>
 <body>
@@ -50,62 +50,61 @@
   </div>
 </div>
 
-<div id="app" class="app" style="display:none;">
+<div id="app" class="app">
 
   <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
     <div class="sidebar-header">
       <span class="material-icons-round sidebar-logo" aria-hidden="true">auto_stories</span>
       <span class="sidebar-brand-name">StudyHub</span>
-      <span class="sidebar-coins" id="sidebar-coins" title="StudyCoins"><span class="material-icons-round sidebar-coin-icon" aria-hidden="true">toll</span><span id="sidebar-coin-count">0</span></span>
+      <a href="shop.html" class="sidebar-coins" id="sidebar-coins" title="StudyCoins" aria-label="Go to shop"><span class="material-icons-round sidebar-coin-icon" aria-hidden="true">toll</span><span id="sidebar-coin-count">0</span></a>
     </div>
     <nav class="sidebar-nav" aria-label="Primary navigation">
-      <button class="nav-item active" data-page="home" aria-current="page" aria-label="Home">
+      <a href="index.html" class="nav-item active" aria-label="Home">
         <span class="nav-indicator" aria-hidden="true"></span>
         <span class="material-icons-round nav-icon" aria-hidden="true">cottage</span>
         <span class="nav-label">Home</span>
-      </button>
-      <button class="nav-item" data-page="checkin" aria-label="Daily Check-In">
+      </a>
+      <a href="checkin.html" class="nav-item" aria-label="Daily Check-In">
         <span class="nav-indicator" aria-hidden="true"></span>
         <span class="material-icons-round nav-icon" aria-hidden="true">sentiment_satisfied</span>
         <span class="nav-label">Check-In</span>
-      </button>
-      <button class="nav-item" data-page="journal" aria-label="Journal">
+      </a>
+      <a href="journal.html" class="nav-item" aria-label="Journal">
         <span class="nav-indicator" aria-hidden="true"></span>
         <span class="material-icons-round nav-icon" aria-hidden="true">menu_book</span>
         <span class="nav-label">Journal</span>
-      </button>
-      <button class="nav-item" data-page="insights" aria-label="Insights">
+      </a>
+      <a href="insights.html" class="nav-item" aria-label="Insights">
         <span class="nav-indicator" aria-hidden="true"></span>
         <span class="material-icons-round nav-icon" aria-hidden="true">insights</span>
         <span class="nav-label">Insights</span>
-      </button>
-      <button class="nav-item" data-page="wellness" aria-label="Wellness">
+      </a>
+      <a href="wellness.html" class="nav-item" aria-label="Wellness">
         <span class="nav-indicator" aria-hidden="true"></span>
         <span class="material-icons-round nav-icon" aria-hidden="true">spa</span>
         <span class="nav-label">Wellness</span>
-      </button>
-      <button class="nav-item" data-page="study" aria-label="Study Tools">
+      </a>
+      <a href="study.html" class="nav-item" aria-label="Study Tools">
         <span class="nav-indicator" aria-hidden="true"></span>
         <span class="material-icons-round nav-icon" aria-hidden="true">school</span>
         <span class="nav-label">Study</span>
-      </button>
-      <button class="nav-item" data-page="shop" aria-label="Shop">
+      </a>
+      <a href="shop.html" class="nav-item" aria-label="Shop">
         <span class="nav-indicator" aria-hidden="true"></span>
         <span class="material-icons-round nav-icon" aria-hidden="true">storefront</span>
         <span class="nav-label">Shop</span>
-      </button>
+      </a>
     </nav>
     <div class="sidebar-footer">
-      <button class="nav-item" data-page="settings" aria-label="Settings">
+      <a href="settings.html" class="nav-item" aria-label="Settings">
         <span class="nav-indicator" aria-hidden="true"></span>
         <span class="material-icons-round nav-icon" aria-hidden="true">settings</span>
         <span class="nav-label">Settings</span>
-      </button>
+      </a>
     </div>
   </aside>
 
   <main class="main-content" id="main-content" role="main">
-
     <header class="top-bar" id="top-bar" role="banner" aria-hidden="true" style="display:none!important;">
     </header>
 
@@ -119,15 +118,15 @@
             <span class="material-icons-round" aria-hidden="true">close</span>
           </button>
         </div>
-        <button class="drawer-item active" data-page="home"><span class="material-icons-round" aria-hidden="true">cottage</span>Home</button>
-        <button class="drawer-item" data-page="checkin"><span class="material-icons-round" aria-hidden="true">sentiment_satisfied</span>Check-In</button>
-        <button class="drawer-item" data-page="journal"><span class="material-icons-round" aria-hidden="true">menu_book</span>Journal</button>
-        <button class="drawer-item" data-page="insights"><span class="material-icons-round" aria-hidden="true">insights</span>Insights</button>
-        <button class="drawer-item" data-page="wellness"><span class="material-icons-round" aria-hidden="true">spa</span>Wellness</button>
-        <button class="drawer-item" data-page="study"><span class="material-icons-round" aria-hidden="true">school</span>Study</button>
-        <button class="drawer-item" data-page="shop"><span class="material-icons-round" aria-hidden="true">storefront</span>Shop</button>
+        <a href="index.html" class="drawer-item"><span class="material-icons-round" aria-hidden="true">cottage</span>Home</a>
+        <a href="checkin.html" class="drawer-item"><span class="material-icons-round" aria-hidden="true">sentiment_satisfied</span>Check-In</a>
+        <a href="journal.html" class="drawer-item"><span class="material-icons-round" aria-hidden="true">menu_book</span>Journal</a>
+        <a href="insights.html" class="drawer-item"><span class="material-icons-round" aria-hidden="true">insights</span>Insights</a>
+        <a href="wellness.html" class="drawer-item"><span class="material-icons-round" aria-hidden="true">spa</span>Wellness</a>
+        <a href="study.html" class="drawer-item"><span class="material-icons-round" aria-hidden="true">school</span>Study</a>
+        <a href="shop.html" class="drawer-item"><span class="material-icons-round" aria-hidden="true">storefront</span>Shop</a>
         <div class="drawer-divider" role="separator"></div>
-        <button class="drawer-item" data-page="settings"><span class="material-icons-round" aria-hidden="true">settings</span>Settings</button>
+        <a href="settings.html" class="drawer-item"><span class="material-icons-round" aria-hidden="true">settings</span>Settings</a>
       </nav>
     </div>
 
@@ -156,22 +155,22 @@
             <p class="mood-hero-label">Today's mood</p>
             <p class="mood-hero-value" id="home-mood-display">Not logged yet</p>
           </div>
-          <button class="btn-filled-tonal mood-hero-btn" data-page="checkin">Log Mood</button>
+          <a href="checkin.html" class="btn-filled-tonal mood-hero-btn">Log Mood</a>
         </div>
         <div class="stats-grid">
-          <div class="stat-card stat-card--streak">
+          <div class="stat-card stat-card--streak" id="home-streak-card" style="cursor:pointer" role="button" tabindex="0" aria-label="View streak calendar">
             <div class="stat-icon-wrap"><span class="material-icons-round stat-icon" aria-hidden="true">local_fire_department</span></div>
             <div><p class="stat-value" id="home-streak">0 days</p><p class="stat-label">Streak</p></div>
           </div>
-          <div class="stat-card stat-card--habits">
+          <div class="stat-card stat-card--habits" id="home-habits-card" style="cursor:pointer" role="button" tabindex="0" aria-label="Go to habit tracker">
             <div class="stat-icon-wrap"><span class="material-icons-round stat-icon" aria-hidden="true">check_circle</span></div>
             <div><p class="stat-value" id="home-habits-today">0/0</p><p class="stat-label">Habits today</p></div>
           </div>
-          <div class="stat-card stat-card--focus">
+          <div class="stat-card stat-card--focus" id="home-focus-card" style="cursor:pointer" role="button" tabindex="0" aria-label="Go to study timer">
             <div class="stat-icon-wrap"><span class="material-icons-round stat-icon" aria-hidden="true">timer</span></div>
             <div><p class="stat-value" id="home-focus">0 today</p><p class="stat-label">Focus sessions</p></div>
           </div>
-          <div class="stat-card stat-card--journal">
+          <div class="stat-card stat-card--journal" id="home-journal-card" style="cursor:pointer" role="button" tabindex="0" aria-label="Go to journal">
             <div class="stat-icon-wrap"><span class="material-icons-round stat-icon" aria-hidden="true">edit_note</span></div>
             <div><p class="stat-value" id="home-entries">0</p><p class="stat-label">Journal entries</p></div>
           </div>
@@ -179,10 +178,10 @@
         <section aria-label="Quick actions">
           <h2 class="section-heading">Quick Actions</h2>
           <div class="quick-actions-grid">
-            <button class="qa-card" data-page="checkin" aria-label="Log mood"><span class="material-icons-round qa-icon" aria-hidden="true">mood</span><span class="qa-label">Log Mood</span></button>
-            <button class="qa-card" data-page="journal" aria-label="Write journal entry"><span class="material-icons-round qa-icon" aria-hidden="true">draw</span><span class="qa-label">Write Entry</span></button>
-            <button class="qa-card" data-page="wellness" aria-label="Breathing exercise"><span class="material-icons-round qa-icon" aria-hidden="true">air</span><span class="qa-label">Breathe</span></button>
-            <button class="qa-card" data-page="study" aria-label="Start focus session"><span class="material-icons-round qa-icon" aria-hidden="true">timer</span><span class="qa-label">Focus</span></button>
+            <a href="checkin.html" class="qa-card" aria-label="Log mood"><span class="material-icons-round qa-icon" aria-hidden="true">mood</span><span class="qa-label">Log Mood</span></a>
+            <a href="journal.html" class="qa-card" aria-label="Write journal entry"><span class="material-icons-round qa-icon" aria-hidden="true">draw</span><span class="qa-label">Write Entry</span></a>
+            <a href="wellness.html" class="qa-card" aria-label="Breathing exercise"><span class="material-icons-round qa-icon" aria-hidden="true">air</span><span class="qa-label">Breathe</span></a>
+            <a href="study.html" class="qa-card" aria-label="Start focus session"><span class="material-icons-round qa-icon" aria-hidden="true">timer</span><span class="qa-label">Focus</span></a>
           </div>
         </section>
         <section aria-label="This week's moods">
@@ -199,853 +198,24 @@
       </div>
     </section>
 
-    <section class="page" id="page-checkin" aria-label="Daily Check-In">
-      <div class="page-inner">
-        <div class="mobile-page-header">
-          <button class="mobile-back-btn" data-page="home" aria-label="Back to home">
-            <span class="material-icons-round" aria-hidden="true">arrow_back</span>
-          </button>
-          <span class="mobile-page-title">Check-In</span>
-          <button class="mobile-back-btn streak-cal-btn" id="streak-cal-btn" aria-label="View streak calendar" type="button" style="margin-left:auto;">
-            <span class="material-icons-round" aria-hidden="true">calendar_month</span>
-          </button>
-        </div>
-        <header class="page-header checkin-page-header">
-          <div class="checkin-header-text">
-            <h1 class="page-title">Daily Check-In</h1>
-            <p class="page-subtitle">How are you feeling today?</p>
-          </div>
-        </header>
-        <div class="card" role="form" aria-label="Mood check-in form">
-          <fieldset class="mood-emoji-grid" id="mood-emoji-grid" aria-label="Select your mood">
-            <legend class="fieldset-legend">Select your mood</legend>
-            <button class="mood-btn" data-mood="1" data-label="Struggling" aria-label="Struggling mood" type="button"><span class="material-icons-round" aria-hidden="true">sentiment_very_dissatisfied</span><span class="mood-btn-label">Struggling</span></button>
-            <button class="mood-btn" data-mood="2" data-label="Low" aria-label="Low mood" type="button"><span class="material-icons-round" aria-hidden="true">sentiment_dissatisfied</span><span class="mood-btn-label">Low</span></button>
-            <button class="mood-btn" data-mood="3" data-label="Okay" aria-label="Okay mood" type="button"><span class="material-icons-round" aria-hidden="true">sentiment_neutral</span><span class="mood-btn-label">Okay</span></button>
-            <button class="mood-btn" data-mood="4" data-label="Good" aria-label="Good mood" type="button"><span class="material-icons-round" aria-hidden="true">sentiment_satisfied</span><span class="mood-btn-label">Good</span></button>
-            <button class="mood-btn" data-mood="5" data-label="Amazing" aria-label="Amazing mood" type="button"><span class="material-icons-round" aria-hidden="true">sentiment_very_satisfied</span><span class="mood-btn-label">Amazing</span></button>
-          </fieldset>
-          <p class="selected-mood-label" id="selected-mood-label" aria-live="polite" aria-atomic="true"></p>
-          <div class="field-group mood-finetune-group" id="mood-finetune-group" style="display:none;">
-            <div class="mood-finetune-header">
-              <span class="field-label">Fine-tune</span>
-              <span class="mood-finetune-zone-pill" id="mood-finetune-zone-label"></span>
-            </div>
-            <div class="mood-slider-track-wrap">
-              <input type="range" id="mood-slider" min="1" max="10" value="5" class="range-slider mood-slider-colored" aria-label="Mood fine-tune">
-              <div class="mood-slider-dots" id="mood-slider-dots" aria-hidden="true"></div>
-            </div>
-            <div class="mood-slider-ticks" aria-hidden="true">
-              <span>← Worse</span>
-              <span class="mood-finetune-center-lbl" id="mood-finetune-center-label"></span>
-              <span>Better →</span>
-            </div>
-          </div>
-          <h3 class="subsection-heading">Quick Reflection</h3>
-          <div class="field-group">
-            <label class="field-label" for="checkin-thoughts">What's on your mind today?</label>
-            <textarea id="checkin-thoughts" class="textarea" rows="3" maxlength="500" placeholder="Share a few thoughts…" aria-describedby="thoughts-count"></textarea>
-            <span class="char-count" id="thoughts-count" aria-live="polite">0 / 500</span>
-          </div>
-          <fieldset class="field-group checkin-fieldset">
-            <legend class="field-label">Energy level today</legend>
-            <div class="chip-group chip-group--full" role="group" aria-label="Energy level">
-              <button class="chip chip--full" data-energy="low" type="button" aria-pressed="false"><span class="material-icons-round chip-icon" aria-hidden="true">battery_1_bar</span>Low</button>
-              <button class="chip chip--full" data-energy="medium" type="button" aria-pressed="false"><span class="material-icons-round chip-icon" aria-hidden="true">battery_5_bar</span>Medium</button>
-              <button class="chip chip--full" data-energy="high" type="button" aria-pressed="false"><span class="material-icons-round chip-icon" aria-hidden="true">bolt</span>High</button>
-            </div>
-          </fieldset>
-          <fieldset class="field-group checkin-fieldset">
-            <legend class="field-label">Sleep quality last night</legend>
-            <div class="chip-group chip-group--full" role="group" aria-label="Sleep quality">
-              <button class="chip chip--full" data-sleep="poor" type="button" aria-pressed="false">Poor</button>
-              <button class="chip chip--full" data-sleep="fair" type="button" aria-pressed="false">Fair</button>
-              <button class="chip chip--full" data-sleep="good" type="button" aria-pressed="false">Good</button>
-              <button class="chip chip--full" data-sleep="great" type="button" aria-pressed="false">Great</button>
-            </div>
-          </fieldset>
-          <div class="field-group">
-            <label class="field-label" for="stress-slider">Stress level</label>
-            <input type="range" id="stress-slider" min="0" max="10" value="5" class="range-slider stress-slider-colored" aria-label="Stress level 0 = very stressed, 10 = calm">
-            <div class="range-ticks" aria-hidden="true"><span>Very Stressed</span><span>Moderate</span><span>Calm</span></div>
-          </div>
-          <div class="wellness-score-row" id="wellness-score-row" style="display:none;" aria-live="polite">
-            <div class="wellness-score-card">
-              <div class="wellness-score-header">
-                <span class="material-icons-round wellness-score-icon" aria-hidden="true">self_improvement</span>
-                <div class="wellness-score-title-block">
-                  <p class="wellness-score-title">Wellness Score</p>
-                  <p class="wellness-score-subtitle">Based on your inputs today</p>
-                </div>
-                <span class="wellness-score-badge" id="wellness-score-value">—</span>
-              </div>
-              <div class="wellness-score-bar-wrap">
-                <div class="wellness-score-bar" id="wellness-score-bar" style="width:0%"></div>
-              </div>
-              <div class="wellness-score-breakdown" id="wellness-score-breakdown">
-                <div class="wsb-row"><span class="wsb-label">Mood</span><span class="wsb-dots" id="wsb-mood"></span></div>
-                <div class="wsb-row"><span class="wsb-label">Stress</span><span class="wsb-dots" id="wsb-stress"></span></div>
-                <div class="wsb-row"><span class="wsb-label">Energy</span><span class="wsb-dots" id="wsb-energy"></span></div>
-                <div class="wsb-row"><span class="wsb-label">Sleep</span><span class="wsb-dots" id="wsb-sleep"></span></div>
-              </div>
-            </div>
-          </div>
-          <button class="btn-filled btn-full" id="save-checkin" type="button"><span class="material-icons-round" aria-hidden="true">save</span>Save Check-In</button>
-        </div>
-        <section aria-label="Check-in history">
-          <h2 class="section-heading">Past Check-Ins</h2>
-          <div id="checkin-history"></div>
-        </section>
-      </div>
-    </section>
-
-    <section class="page" id="page-journal" aria-label="Journal and notes">
-      <div class="page-inner">
-        <div class="mobile-page-header">
-          <button class="mobile-back-btn" data-page="home" aria-label="Back to home">
-            <span class="material-icons-round" aria-hidden="true">arrow_back</span>
-          </button>
-          <span class="mobile-page-title">Journal</span>
-        </div>
-        <div class="tab-bar" role="tablist" aria-label="Journal sections">
-          <button class="tab active" data-tab="notes" role="tab" aria-selected="true" aria-controls="tab-notes" id="tab-btn-notes">Notes</button>
-          <button class="tab" data-tab="journal" role="tab" aria-selected="false" aria-controls="tab-journal" id="tab-btn-journal">Journal</button>
-          <button class="tab" data-tab="todo" role="tab" aria-selected="false" aria-controls="tab-todo" id="tab-btn-todo">To-Do</button>
-          <button class="tab" data-tab="habits" role="tab" aria-selected="false" aria-controls="tab-habits" id="tab-btn-habits">Habits</button>
-        </div>
-
-        <div class="tab-panel active" id="tab-notes" role="tabpanel" aria-labelledby="tab-btn-notes">
-          <div class="card">
-            <div class="notes-header-row">
-              <h2 class="card-title" style="margin-bottom:0">Notes</h2>
-              <div class="notes-mode-toggle" role="group" aria-label="Editor mode">
-                <button type="button" class="mode-btn active" id="notes-edit-mode-btn" aria-pressed="true">
-                  <span class="material-icons-round" aria-hidden="true">edit</span>Edit
-                </button>
-                <button type="button" class="mode-btn" id="notes-preview-mode-btn" aria-pressed="false">
-                  <span class="material-icons-round" aria-hidden="true">preview</span>Preview
-                </button>
-                <button type="button" class="mode-btn" id="notes-split-mode-btn" aria-pressed="false">
-                  <span class="material-icons-round" aria-hidden="true">vertical_split</span>Split
-                </button>
-              </div>
-            </div>
-            <div class="editor-toolbar" role="toolbar" aria-label="Text formatting options">
-              <button type="button" class="toolbar-btn" data-md="bold" aria-label="Bold"><span class="material-icons-round" aria-hidden="true">format_bold</span></button>
-              <button type="button" class="toolbar-btn" data-md="italic" aria-label="Italic"><span class="material-icons-round" aria-hidden="true">format_italic</span></button>
-              <button type="button" class="toolbar-btn" data-md="heading" aria-label="Heading"><span class="material-icons-round" aria-hidden="true">title</span></button>
-              <button type="button" class="toolbar-btn" data-md="ul" aria-label="Bullet list"><span class="material-icons-round" aria-hidden="true">format_list_bulleted</span></button>
-              <button type="button" class="toolbar-btn" data-md="ol" aria-label="Numbered list"><span class="material-icons-round" aria-hidden="true">format_list_numbered</span></button>
-              <button type="button" class="toolbar-btn" data-md="code" aria-label="Code"><span class="material-icons-round" aria-hidden="true">code</span></button>
-              <button type="button" class="toolbar-btn" data-md="link" aria-label="Link"><span class="material-icons-round" aria-hidden="true">link</span></button>
-              <button type="button" class="toolbar-btn" data-md="image" aria-label="Image"><span class="material-icons-round" aria-hidden="true">image</span></button>
-              <label class="toolbar-btn img-upload-label" aria-label="Upload image" title="Upload image">
-                <span class="material-icons-round" aria-hidden="true">upload</span>
-                <input type="file" id="notes-img-upload" accept="image/*" style="display:none;" aria-label="Upload image file">
-              </label>
-            </div>
-            <div class="editor-container" id="notes-editor-container">
-              <textarea id="notes-input" class="notes-editor-textarea" rows="10" placeholder="Write your note using Markdown…" aria-label="Note content (Markdown supported)" aria-describedby="notes-draft-status"></textarea>
-              <div id="notes-preview" class="notes-preview md-preview" aria-label="Note preview" style="display:none;"></div>
-            </div>
-            <div class="note-label-row">
-              <input type="text" id="note-label-input" class="input-field input-field--sm" placeholder="Add labels… (comma separated)" maxlength="200" aria-label="Note labels">
-            </div>
-            <div class="note-label-row" style="margin-top:0.5rem;">
-              <label class="field-label" for="note-reminder-display" style="margin-bottom:0.25rem">Reminder (optional)</label>
-              <div class="date-picker-wrap">
-                <input type="text" id="note-reminder-display" class="input-field input-field--sm date-display-input" placeholder="Pick reminder date…" aria-label="Note reminder date" readonly>
-                <button type="button" class="date-picker-trigger" id="note-reminder-date-trigger" aria-label="Open date picker"><span class="material-icons-round" aria-hidden="true">calendar_month</span></button>
-                <input type="hidden" id="note-reminder-date">
-              </div>
-            </div>
-            <div class="draft-status-row">
-              <span class="draft-status" id="notes-draft-status" aria-live="polite"></span>
-              <div style="display:flex;gap:0.5rem;align-items:center;">
-                <button id="cancel-note-edit" class="btn-outlined" type="button" style="display:none;"><span class="material-icons-round" aria-hidden="true">close</span>Cancel</button>
-                <button id="save-note" class="btn-filled" type="button"><span class="material-icons-round" aria-hidden="true">save</span>Save Note</button>
-              </div>
-            </div>
-          </div>
-          <div class="search-sort-bar" id="notes-search-sort-bar">
-            <div class="search-sort-bar__search">
-              <span class="material-icons-round search-sort-bar__icon" aria-hidden="true">search</span>
-              <input type="search" id="notes-search" class="input-field input-field--sm search-sort-bar__input" placeholder="Search notes…" maxlength="200" aria-label="Search notes">
-            </div>
-            <select id="notes-sort" class="input-field input-field--sm search-sort-bar__sort" aria-label="Sort notes">
-              <option value="date-desc">Newest first</option>
-              <option value="date-asc">Oldest first</option>
-              <option value="alpha-asc">A → Z</option>
-              <option value="alpha-desc">Z → A</option>
-            </select>
-          </div>
-          <div id="notes-list" class="notes-list" aria-label="Saved notes"></div>
-        </div>
-
-        <div class="tab-panel" id="tab-journal" role="tabpanel" aria-labelledby="tab-btn-journal">
-          <div class="card">
-            <div class="notes-header-row">
-              <h2 class="card-title" style="margin-bottom:0">Journal Entry</h2>
-              <div class="notes-mode-toggle" role="group" aria-label="Editor mode">
-                <button type="button" class="mode-btn active" id="journal-edit-mode-btn" aria-pressed="true">
-                  <span class="material-icons-round" aria-hidden="true">edit</span>Edit
-                </button>
-                <button type="button" class="mode-btn" id="journal-preview-mode-btn" aria-pressed="false">
-                  <span class="material-icons-round" aria-hidden="true">preview</span>Preview
-                </button>
-                <button type="button" class="mode-btn" id="journal-split-mode-btn" aria-pressed="false">
-                  <span class="material-icons-round" aria-hidden="true">vertical_split</span>Split
-                </button>
-              </div>
-            </div>
-            <div class="field-group" style="margin-top:1rem;">
-              <label class="field-label" for="journal-date">Date</label>
-              <div class="date-picker-wrap">
-                <input type="text" id="journal-date" class="input-field date-display-input" placeholder="Select date…" aria-label="Journal date" readonly>
-                <button type="button" class="date-picker-trigger" id="journal-date-trigger" aria-label="Open date picker" aria-haspopup="dialog">
-                  <span class="material-icons-round" aria-hidden="true">calendar_month</span>
-                </button>
-                <input type="hidden" id="journal-date-value">
-              </div>
-            </div>
-            <div class="editor-toolbar" role="toolbar" aria-label="Text formatting options">
-              <button type="button" class="toolbar-btn" data-md="bold" aria-label="Bold"><span class="material-icons-round" aria-hidden="true">format_bold</span></button>
-              <button type="button" class="toolbar-btn" data-md="italic" aria-label="Italic"><span class="material-icons-round" aria-hidden="true">format_italic</span></button>
-              <button type="button" class="toolbar-btn" data-md="heading" aria-label="Heading"><span class="material-icons-round" aria-hidden="true">title</span></button>
-              <button type="button" class="toolbar-btn" data-md="ul" aria-label="Bullet list"><span class="material-icons-round" aria-hidden="true">format_list_bulleted</span></button>
-              <button type="button" class="toolbar-btn" data-md="ol" aria-label="Numbered list"><span class="material-icons-round" aria-hidden="true">format_list_numbered</span></button>
-              <button type="button" class="toolbar-btn" data-md="image" aria-label="Image"><span class="material-icons-round" aria-hidden="true">image</span></button>
-              <label class="toolbar-btn img-upload-label" aria-label="Upload image" title="Upload image">
-                <span class="material-icons-round" aria-hidden="true">upload</span>
-                <input type="file" id="journal-img-upload" accept="image/*" style="display:none;" aria-label="Upload image file">
-              </label>
-            </div>
-            <div class="editor-container" id="journal-editor-container">
-              <textarea id="journal-entry" class="notes-editor-textarea journal-textarea" rows="8" maxlength="10000" placeholder="Write your thoughts, feelings, and reflections… (Markdown supported)" aria-describedby="journal-count journal-draft-status"></textarea>
-              <div id="journal-preview" class="notes-preview md-preview" aria-label="Journal preview" style="display:none;"></div>
-            </div>
-            <div class="draft-status-row">
-              <span class="draft-status" id="journal-draft-status" aria-live="polite"></span>
-              <span class="char-count" id="journal-count" aria-live="polite">0 / 10000</span>
-            </div>
-            <div class="note-label-row" style="margin-top:0.75rem;">
-              <input type="text" id="journal-label-input" class="input-field input-field--sm" placeholder="Add labels… (comma separated)" maxlength="200" aria-label="Journal labels">
-            </div>
-            <div class="draft-status-row" style="margin-top:0.875rem;">
-              <div style="display:flex;gap:0.5rem;align-items:center;">
-                <button id="cancel-journal-edit" class="btn-outlined" type="button" style="display:none;"><span class="material-icons-round" aria-hidden="true">close</span>Cancel</button>
-                <button id="save-journal" class="btn-filled" type="button"><span class="material-icons-round" aria-hidden="true">save</span>Save Entry</button>
-              </div>
-            </div>
-          </div>
-          <div class="search-sort-bar" id="journal-search-sort-bar">
-            <div class="search-sort-bar__search">
-              <span class="material-icons-round search-sort-bar__icon" aria-hidden="true">search</span>
-              <input type="search" id="journal-search" class="input-field input-field--sm search-sort-bar__input" placeholder="Search journal…" maxlength="200" aria-label="Search journal entries">
-            </div>
-            <select id="journal-sort" class="input-field input-field--sm search-sort-bar__sort" aria-label="Sort journal entries">
-              <option value="date-desc">Newest first</option>
-              <option value="date-asc">Oldest first</option>
-              <option value="alpha-asc">A → Z</option>
-              <option value="alpha-desc">Z → A</option>
-            </select>
-          </div>
-          <div id="journal-history" class="journal-history" aria-label="Journal entry history"></div>
-        </div>
-
-        <div class="tab-panel" id="tab-todo" role="tabpanel" aria-labelledby="tab-btn-todo">
-          <div class="card">
-            <h2 class="card-title">To-Do List</h2>
-            <div class="todo-form-area">
-              <div class="field-group">
-                <label class="field-label" for="todo-input">Task name</label>
-                <input type="text" id="todo-input" class="input-field" placeholder="Add a task…" maxlength="200" aria-label="Task name">
-              </div>
-              <div class="todo-row">
-                <div class="field-group flex-1">
-                  <label class="field-label" for="todo-date-display">Deadline</label>
-                  <div class="date-picker-wrap">
-                    <input type="text" id="todo-date-display" class="input-field date-display-input" placeholder="Pick date…" aria-label="Task deadline date" readonly>
-                    <button type="button" class="date-picker-trigger" id="todo-date-trigger" aria-label="Open date picker" aria-haspopup="dialog"><span class="material-icons-round" aria-hidden="true">calendar_month</span></button>
-                    <input type="hidden" id="todo-date">
-                  </div>
-                </div>
-                <div class="field-group flex-1">
-                  <label class="field-label" for="todo-time-display">Time</label>
-                  <div class="time-picker-wrap">
-                    <input type="text" id="todo-time-display" class="input-field time-display-input" placeholder="Pick time…" aria-label="Task deadline time" readonly>
-                    <button type="button" class="time-picker-trigger" id="todo-time-trigger" aria-label="Open time picker" aria-haspopup="dialog"><span class="material-icons-round" aria-hidden="true">schedule</span></button>
-                    <input type="hidden" id="todo-time">
-                  </div>
-                </div>
-                <label class="checkbox-label"><input type="checkbox" id="todo-allday" aria-label="All day task"><span>All Day</span></label>
-              </div>
-              <div class="todo-row">
-                <div class="field-group flex-1">
-                  <label class="field-label" for="todo-priority">Priority</label>
-                  <select id="todo-priority" class="input-field" aria-label="Priority level">
-                    <option value="Low">Low</option>
-                    <option value="Medium" selected>Medium</option>
-                    <option value="High">High</option>
-                    <option value="Urgent">Urgent</option>
-                  </select>
-                </div>
-                <div class="field-group flex-1">
-                  <label class="field-label" for="todo-progress">Status</label>
-                  <select id="todo-progress" class="input-field" aria-label="Task status">
-                    <option value="Not Started" selected>Not Started</option>
-                    <option value="In Progress">In Progress</option>
-                    <option value="Done">Done</option>
-                  </select>
-                </div>
-              </div>
-              <button id="add-todo" class="btn-filled" type="button"><span class="material-icons-round" aria-hidden="true">add</span>Add Task</button>
-            </div>
-          </div>
-          <div class="search-sort-bar" id="todo-search-sort-bar">
-            <div class="search-sort-bar__search">
-              <span class="material-icons-round search-sort-bar__icon" aria-hidden="true">search</span>
-              <input type="search" id="todo-search" class="input-field input-field--sm search-sort-bar__input" placeholder="Search tasks…" maxlength="200" aria-label="Search tasks">
-            </div>
-            <select id="todo-sort" class="input-field input-field--sm search-sort-bar__sort" aria-label="Sort tasks">
-              <option value="date-desc">Newest first</option>
-              <option value="date-asc">Oldest first</option>
-              <option value="alpha-asc">A → Z</option>
-              <option value="alpha-desc">Z → A</option>
-              <option value="deadline-asc">Deadline ↑</option>
-              <option value="deadline-desc">Deadline ↓</option>
-              <option value="priority-asc">Priority ↑</option>
-              <option value="priority-desc">Priority ↓</option>
-            </select>
-          </div>
-          <ul id="todo-list" class="todo-list" aria-label="Task list" aria-live="polite"></ul>
-        </div>
-
-        <div class="tab-panel" id="tab-habits" role="tabpanel" aria-labelledby="tab-btn-habits">
-          <div class="card">
-            <h2 class="card-title">Habit Tracker</h2>
-            <div class="habit-add-row">
-              <input type="text" id="habit-input" class="input-field" placeholder="New habit…" maxlength="100" aria-label="Habit name">
-              <button id="add-habit" class="btn-filled" type="button"><span class="material-icons-round" aria-hidden="true">add</span>Add</button>
-              <button id="download-habits" class="btn-outlined" type="button"><span class="material-icons-round" aria-hidden="true">download</span>Export CSV</button>
-            </div>
-            <div id="habit-metrics" class="habit-metrics" aria-label="Habit statistics"></div>
-            <div id="habit-grid" class="habit-grid-wrap" role="region" aria-label="Weekly habit tracking grid"></div>
-            <p id="habit-motivation" class="habit-motivation" aria-live="polite"></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="page-insights" aria-label="Insights and analytics">
-      <div class="page-inner">
-        <div class="mobile-page-header">
-          <button class="mobile-back-btn" data-page="home" aria-label="Back to home">
-            <span class="material-icons-round" aria-hidden="true">arrow_back</span>
-          </button>
-          <span class="mobile-page-title">Insights</span>
-        </div>
-        <header class="page-header"><h1 class="page-title">Insights</h1></header>
-        <div class="tab-bar" role="tablist" aria-label="Insight sections">
-          <button class="tab active" data-itab="overview" role="tab" aria-selected="true">Overview</button>
-          <button class="tab" data-itab="mood" role="tab" aria-selected="false">Mood</button>
-          <button class="tab" data-itab="habits" role="tab" aria-selected="false">Habits</button>
-          <button class="tab" data-itab="report" role="tab" aria-selected="false">Report</button>
-        </div>
-        <div class="itab-panel active" id="itab-overview">
-          <div class="insights-summary-grid" id="insights-summary" aria-label="Summary statistics"></div>
-          <div class="card"><h2 class="card-title">7-Day Mood Chart</h2><div class="chart-wrap" role="img" aria-label="7-day mood chart"><canvas id="mood-chart" width="600" height="200"></canvas></div></div>
-          <div class="card"><h2 class="card-title">Emotional Patterns</h2><div id="emotional-patterns"></div></div>
-        </div>
-        <div class="itab-panel" id="itab-mood">
-          <div class="card"><h2 class="card-title">30-Day Mood Trend</h2><div class="chart-wrap" role="img" aria-label="30-day mood trend chart"><canvas id="mood-chart-30" width="600" height="200"></canvas></div></div>
-          <div class="card"><h2 class="card-title">Mood Distribution</h2><div class="chart-wrap chart-wrap--sm" role="img" aria-label="Mood distribution bar chart"><canvas id="mood-dist-chart" width="300" height="300"></canvas></div></div>
-          <div class="card"><h2 class="card-title">Weekly Averages</h2><div id="weekly-averages"></div></div>
-        </div>
-        <div class="itab-panel" id="itab-habits">
-          <div class="card"><h2 class="card-title">Habit Consistency</h2><div class="chart-wrap" role="img" aria-label="Habit consistency chart"><canvas id="habit-chart" width="600" height="200"></canvas></div></div>
-          <div class="card"><h2 class="card-title">Wellness Streaks</h2><div id="wellness-streaks"></div></div>
-        </div>
-        <div class="itab-panel" id="itab-report">
-          <div class="card report-card">
-            <span class="material-icons-round report-big-icon" aria-hidden="true">description</span>
-            <h2 class="card-title">Professional Wellness Report</h2>
-            <p class="card-body">Generate a structured wellness report to share with your counselor, guardian, or healthcare professional.</p>
-            <div class="notice-box notice-box--warn" role="note">
-              <span class="material-icons-round notice-icon" aria-hidden="true">warning_amber</span>
-              <p><strong>Important:</strong> This report is a preliminary wellness assessment from user-provided data. It is not a medical diagnosis and must be interpreted by qualified healthcare professionals.</p>
-            </div>
-            <div class="field-group">
-              <label class="field-label" for="report-period">Report Period</label>
-              <select id="report-period" class="input-field" aria-label="Select report period">
-                <option value="7">Last 7 days</option>
-                <option value="14">Last 14 days</option>
-                <option value="30" selected>Last 30 days</option>
-                <option value="90">Last 90 days</option>
-              </select>
-            </div>
-            <div class="field-group">
-              <label class="field-label" for="report-name">Student Name (optional)</label>
-              <input type="text" id="report-name" class="input-field" placeholder="Enter name for report…" maxlength="100" aria-label="Student name for report">
-            </div>
-            <button id="generate-report" class="btn-filled btn-full" type="button"><span class="material-icons-round" aria-hidden="true">download</span>Generate &amp; Download PDF</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="page-wellness" aria-label="Wellness activities">
-      <div class="page-inner">
-        <div class="mobile-page-header">
-          <button class="mobile-back-btn" data-page="home" aria-label="Back to home">
-            <span class="material-icons-round" aria-hidden="true">arrow_back</span>
-          </button>
-          <span class="mobile-page-title">Wellness</span>
-        </div>
-        <header class="page-header"><h1 class="page-title">Wellness</h1></header>
-        <div class="tab-bar" role="tablist" aria-label="Wellness sections">
-          <button class="tab active" data-wtab="breathing" role="tab" aria-selected="true">Breathing</button>
-          <button class="tab" data-wtab="gratitude" role="tab" aria-selected="false">Gratitude</button>
-          <button class="tab" data-wtab="challenges" role="tab" aria-selected="false">Challenges</button>
-        </div>
-        <div class="wtab-panel active" id="wtab-breathing">
-          <div class="card breathing-card">
-            <h2 class="card-title">Breathing Exercise</h2>
-            <div class="chip-group breathing-selector" role="group" aria-label="Breathing technique">
-              <button class="chip active" data-type="478" type="button" aria-pressed="true">4-7-8</button>
-              <button class="chip" data-type="box" type="button" aria-pressed="false">Box</button>
-              <button class="chip" data-type="calm" type="button" aria-pressed="false">Calm</button>
-            </div>
-            <div class="breathing-stage-wrap">
-              <div class="breathing-stage" aria-live="polite" aria-atomic="true">
-                <div class="breathing-ring-wrap">
-                  <div class="breathing-ring" id="breathing-ring" aria-hidden="true"></div>
-                  <div class="breathing-circle" id="breathing-circle">
-                    <span class="material-icons-round breath-icon" aria-hidden="true">air</span>
-                    <span class="breath-instruction" id="breath-instruction">Press Start</span>
-                  </div>
-                </div>
-              </div>
-              <p class="breath-count">Cycles completed: <strong id="cycle-count">0</strong></p>
-            </div>
-            <div class="breathing-controls">
-              <button id="breath-start" class="btn-filled" type="button"><span class="material-icons-round" aria-hidden="true">play_arrow</span>Start</button>
-              <button id="breath-stop" class="btn-outlined" type="button"><span class="material-icons-round" aria-hidden="true">stop</span>Stop</button>
-            </div>
-          </div>
-        </div>
-        <div class="wtab-panel" id="wtab-gratitude">
-          <div class="card">
-            <h2 class="card-title">Gratitude Journal</h2>
-            <p class="card-body">Write three things you're grateful for today.</p>
-            <div class="field-group"><label class="field-label" for="gratitude-1">1. I'm grateful for…</label><input type="text" id="gratitude-1" class="input-field" maxlength="200" placeholder="Something good in your life…" aria-label="First gratitude"></div>
-            <div class="field-group"><label class="field-label" for="gratitude-2">2. Something I enjoyed today…</label><input type="text" id="gratitude-2" class="input-field" maxlength="200" placeholder="A moment, person, or thing…" aria-label="Second gratitude"></div>
-            <div class="field-group"><label class="field-label" for="gratitude-3">3. A challenge I learned from…</label><input type="text" id="gratitude-3" class="input-field" maxlength="200" placeholder="Growth comes from challenges…" aria-label="Third gratitude"></div>
-            <button id="save-gratitude" class="btn-filled btn-full" type="button"><span class="material-icons-round" aria-hidden="true">favorite</span>Save Today's Gratitude</button>
-            <div id="gratitude-history" class="gratitude-history" aria-label="Gratitude entry history"></div>
-          </div>
-        </div>
-        <div class="wtab-panel" id="wtab-challenges">
-          <div class="card">
-            <h2 class="card-title">Self-Care Challenges</h2>
-            <p class="card-body">Complete daily micro-challenges to build healthy habits.</p>
-            <div id="challenges-grid" class="challenges-grid" role="list" aria-label="Daily challenges"></div>
-          </div>
-          <div class="card">
-            <h2 class="card-title">Reflection Prompts</h2>
-            <blockquote class="reflection-prompt-box" id="reflection-prompt" aria-live="polite"></blockquote>
-            <button id="new-prompt" class="btn-outlined" type="button"><span class="material-icons-round" aria-hidden="true">refresh</span>New Prompt</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="page-study" aria-label="Study tools">
-      <div class="page-inner">
-        <div class="mobile-page-header">
-          <button class="mobile-back-btn" data-page="home" aria-label="Back to home">
-            <span class="material-icons-round" aria-hidden="true">arrow_back</span>
-          </button>
-          <span class="mobile-page-title">Study</span>
-        </div>
-        <header class="page-header"><h1 class="page-title">Study Tools</h1></header>
-        <div class="tab-bar" role="tablist" aria-label="Study tool sections">
-          <button class="tab active" data-stab="pomodoro" role="tab" aria-selected="true">Pomodoro</button>
-          <button class="tab" data-stab="calendar" role="tab" aria-selected="false">Calendar</button>
-          <button class="tab" data-stab="flashcards" role="tab" aria-selected="false">Flashcards</button>
-          <button class="tab" data-stab="music" role="tab" aria-selected="false">Music</button>
-        </div>
-        <div class="stab-panel active" id="stab-pomodoro">
-          <div class="card pomodoro-card">
-            <div class="pomo-modes" role="group" aria-label="Timer mode">
-              <button class="pmode active" data-pmode="pomodoro" type="button" aria-pressed="true">Pomodoro</button>
-              <button class="pmode" data-pmode="stopwatch" type="button" aria-pressed="false">Stopwatch</button>
-              <button class="pmode" data-pmode="clock" type="button" aria-pressed="false">Clock</button>
-            </div>
-            <div id="timer-display-wrap">
-              <div class="timer-ring-wrap" id="timer-ring">
-                <svg class="timer-svg" viewBox="0 0 200 200" aria-hidden="true">
-                  <circle class="timer-track" cx="100" cy="100" r="88"/>
-                  <circle class="timer-progress" id="timer-progress-circle" cx="100" cy="100" r="88"/>
-                </svg>
-                <div class="timer-center">
-                  <span class="timer-digits" id="timer-value" role="timer" aria-live="off" aria-label="Time remaining">25:00</span>
-                  <span class="timer-mode-label" id="timer-mode-label">Focus</span>
-                </div>
-              </div>
-              <div class="clock-display" id="clock-display" style="display:none;" role="timer" aria-live="polite" aria-label="Current time">
-                <span id="live-clock" class="timer-digits">00:00:00</span>
-              </div>
-            </div>
-            <div id="countdown-section" style="display:none;" class="countdown-section">
-              <h3 class="subsection-heading" style="margin-bottom:0.75rem">Countdown Timer</h3>
-              <div class="countdown-inputs">
-                <div class="countdown-input-wrap">
-                  <input type="number" id="countdown-h" class="input-field countdown-num" min="0" max="23" value="0" aria-label="Hours">
-                  <label class="countdown-lbl">h</label>
-                </div>
-                <span class="countdown-sep">:</span>
-                <div class="countdown-input-wrap">
-                  <input type="number" id="countdown-m" class="input-field countdown-num" min="0" max="59" value="5" aria-label="Minutes">
-                  <label class="countdown-lbl">m</label>
-                </div>
-                <span class="countdown-sep">:</span>
-                <div class="countdown-input-wrap">
-                  <input type="number" id="countdown-s" class="input-field countdown-num" min="0" max="59" value="0" aria-label="Seconds">
-                  <label class="countdown-lbl">s</label>
-                </div>
-              </div>
-              <div class="countdown-display" id="countdown-display" aria-live="polite">00:05:00</div>
-              <div class="timer-controls" style="margin-top:0.75rem;">
-                <button id="start-countdown" class="btn-filled" type="button"><span class="material-icons-round" aria-hidden="true">play_arrow</span>Start</button>
-                <button id="pause-countdown" class="btn-outlined" type="button"><span class="material-icons-round" aria-hidden="true">pause</span>Pause</button>
-                <button id="reset-countdown" class="btn-text" type="button"><span class="material-icons-round" aria-hidden="true">restart_alt</span>Reset</button>
-              </div>
-            </div>
-            <div class="field-group pomo-settings" id="pomo-settings">
-              <label class="field-label" for="pomo-duration">Focus duration (minutes)</label>
-              <div class="pomo-duration-wrap">
-                <input type="number" id="pomo-duration" value="25" min="1" max="99" class="input-field pomo-duration-input" aria-label="Pomodoro duration in minutes">
-              </div>
-            </div>
-            <div class="timer-controls" id="pomodoro-controls">
-              <button id="start-pomodoro" class="btn-filled" type="button"><span class="material-icons-round" aria-hidden="true">play_arrow</span>Start</button>
-              <button id="pause-pomodoro" class="btn-outlined" type="button"><span class="material-icons-round" aria-hidden="true">pause</span>Pause</button>
-              <button id="reset-pomodoro" class="btn-text" type="button"><span class="material-icons-round" aria-hidden="true">restart_alt</span>Reset</button>
-            </div>
-            <div class="timer-controls" id="stopwatch-controls" style="display:none;">
-              <button id="start-stopwatch" class="btn-filled" type="button"><span class="material-icons-round" aria-hidden="true">play_arrow</span>Start</button>
-              <button id="lap-stopwatch" class="btn-outlined" type="button"><span class="material-icons-round" aria-hidden="true">flag</span>Lap</button>
-              <button id="reset-stopwatch" class="btn-text" type="button"><span class="material-icons-round" aria-hidden="true">restart_alt</span>Reset</button>
-            </div>
-            <ul id="stopwatch-laps" class="laps-list" aria-label="Lap times" aria-live="polite"></ul>
-            <div class="pomo-tip" id="pomo-tip" aria-live="polite" role="note">
-              <span class="material-icons-round pomo-tip-icon" aria-hidden="true">lightbulb</span>
-              <span id="pomo-tip-text">Stay focused for 25 minutes, then take a short 5-minute break.</span>
-            </div>
-          </div>
-        </div>
-        <div class="stab-panel" id="stab-calendar">
-          <div class="card">
-            <div class="cal-topbar">
-              <div class="cal-nav">
-                <button id="prev-period" class="icon-btn" aria-label="Previous period"><span class="material-icons-round" aria-hidden="true">chevron_left</span></button>
-                <select id="calendar-view-mode" class="input-field input-field--sm" aria-label="Calendar view mode">
-                  <option value="month">Month</option><option value="week">Week</option><option value="day">Day</option><option value="year">Year</option>
-                </select>
-                <select id="calendar-month" class="input-field input-field--sm" aria-label="Month"></select>
-                <select id="calendar-year" class="input-field input-field--sm" aria-label="Year"></select>
-                <button id="next-period" class="icon-btn" aria-label="Next period"><span class="material-icons-round" aria-hidden="true">chevron_right</span></button>
-              </div>
-              <button id="add-event-global" class="btn-filled" type="button"><span class="material-icons-round" aria-hidden="true">add</span>Add</button>
-            </div>
-            <div id="calendar-view" class="calendar-view" role="region" aria-label="Calendar"></div>
-            <div id="calendar-details" class="calendar-details"></div>
-            <div id="calendar-event-form" class="event-form card" style="display:none;">
-              <h3 id="cal-form-title" class="card-title">Add Event</h3>
-              <div class="field-group"><label class="field-label" for="event-title">Title</label><input type="text" id="event-title" class="input-field" placeholder="Event title…" maxlength="200" aria-label="Event title"></div>
-              <div class="field-group"><label class="field-label" for="event-type">Type</label>
-                <select id="event-type" class="input-field" aria-label="Event type">
-                  <option value="event">Event</option><option value="task">Task</option><option value="reminder">Reminder</option><option value="deadline">Deadline</option>
-                </select>
-              </div>
-              <label class="checkbox-label"><input type="checkbox" id="event-allday" aria-label="All day event"><span>All Day</span></label>
-              <div class="field-group" id="event-time-group" style="margin-top:1rem;">
-                <label class="field-label" for="event-time-display">Time</label>
-                <div class="time-picker-wrap">
-                  <input type="text" id="event-time-display" class="input-field time-display-input" placeholder="Pick time…" aria-label="Event time" readonly>
-                  <button type="button" class="time-picker-trigger" id="event-time-trigger" aria-label="Open time picker" aria-haspopup="dialog"><span class="material-icons-round" aria-hidden="true">schedule</span></button>
-                  <input type="hidden" id="event-time">
-                </div>
-              </div>
-              <div class="notif-section">
-                <p class="field-label">Notifications (max 5)</p>
-                <div id="notification-list"></div>
-                <button type="button" id="add-notification-btn" class="btn-text"><span class="material-icons-round" aria-hidden="true">add_alarm</span>Add Notification</button>
-              </div>
-              <div class="form-actions">
-                <button id="save-event" class="btn-filled" type="button"><span class="material-icons-round" aria-hidden="true">save</span>Save</button>
-                <button id="cancel-event" class="btn-text" type="button">Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="stab-panel" id="stab-flashcards">
-          <div class="card">
-            <h2 class="card-title">Flashcard Decks</h2>
-            <div class="deck-add-row">
-              <input type="text" id="flashcard-deck-name" class="input-field" placeholder="New deck name…" maxlength="100" aria-label="New deck name">
-              <button id="add-flashcard-deck" class="btn-filled" type="button"><span class="material-icons-round" aria-hidden="true">add</span>Create</button>
-            </div>
-            <div id="flashcard-decks-list" class="decks-list" aria-label="Flashcard decks"></div>
-            <div id="flashcard-deck-section" class="deck-section" style="display:none;">
-              <div class="deck-header">
-                <h3 id="current-deck-name" class="deck-title"></h3>
-                <button id="delete-flashcard-deck" class="btn-text btn-text--danger" type="button"><span class="material-icons-round" aria-hidden="true">delete</span>Delete Deck</button>
-                <button id="close-flashcard-deck" class="btn-text" type="button"><span class="material-icons-round" aria-hidden="true">close</span>Close</button>
-              </div>
-              <div class="card-add-row">
-                <input type="text" id="flashcard-question" class="input-field" placeholder="Question…" maxlength="300" aria-label="Flashcard question">
-                <input type="text" id="flashcard-answer" class="input-field" placeholder="Answer…" maxlength="300" aria-label="Flashcard answer">
-                <button id="add-flashcard" class="btn-filled" type="button"><span class="material-icons-round" aria-hidden="true">add</span>Add Card</button>
-              </div>
-              <div id="flashcard-review-summary" class="review-summary" role="status"></div>
-              <div id="flashcard-deck-cards-grid" class="cards-grid" aria-label="Flashcards"></div>
-            </div>
-          </div>
-        </div>
-        <div class="stab-panel" id="stab-music">
-          <div class="card music-card">
-            <h2 class="card-title">Lo-Fi Music Player</h2>
-            <div class="music-track-info" id="music-track-info">
-              <span class="material-icons-round music-note-icon" aria-hidden="true">music_note</span>
-              <div><p class="track-name" id="track-name">Lofi Hip Hop Radio</p><p class="track-channel" id="track-channel">Chillhop Music</p></div>
-            </div>
-            <iframe id="music-iframe" width="100%" height="280" src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Lo-Fi Music Player"></iframe>
-            <div class="music-controls">
-              <button id="prev-music" class="icon-btn" aria-label="Previous track"><span class="material-icons-round" aria-hidden="true">skip_previous</span></button>
-              <button id="play-music" class="btn-filled" type="button" aria-label="Play music"><span class="material-icons-round" aria-hidden="true">play_arrow</span>Play</button>
-              <button id="next-music" class="icon-btn" aria-label="Next track"><span class="material-icons-round" aria-hidden="true">skip_next</span></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="page-settings" aria-label="Settings">
-      <div class="page-inner">
-        <div class="mobile-page-header">
-          <button class="mobile-back-btn" data-page="home" aria-label="Back to home">
-            <span class="material-icons-round" aria-hidden="true">arrow_back</span>
-          </button>
-          <span class="mobile-page-title">Settings</span>
-        </div>
-        <header class="page-header"><h1 class="page-title">Settings</h1></header>
-        <div class="card">
-          <h2 class="card-title">Profile</h2>
-          <div class="field-group">
-            <label class="field-label" for="settings-name">Your Name</label>
-            <input type="text" id="settings-name" class="input-field" placeholder="Enter your name…" maxlength="100" autocomplete="name">
-          </div>
-          <div class="field-group">
-            <label class="field-label">Gender</label>
-            <div class="gender-toggle-group" role="group" aria-label="Gender selection">
-              <button type="button" class="gender-btn active" data-gender="male" aria-pressed="true">
-                <span class="material-icons-round" aria-hidden="true">male</span>Male
-              </button>
-              <button type="button" class="gender-btn" data-gender="female" aria-pressed="false">
-                <span class="material-icons-round" aria-hidden="true">female</span>Female
-              </button>
-            </div>
-          </div>
-          <button id="save-profile" class="btn-filled" type="button"><span class="material-icons-round" aria-hidden="true">save</span>Save Profile</button>
-        </div>
-        <div class="card">
-          <h2 class="card-title">Appearance</h2>
-          <div class="field-group">
-            <label class="field-label">Theme</label>
-            <div class="theme-toggle-row">
-              <button type="button" class="theme-opt-btn active" id="theme-light-btn" data-theme="light" aria-pressed="true">
-                <span class="material-icons-round" aria-hidden="true">light_mode</span>Light
-              </button>
-              <button type="button" class="theme-opt-btn" id="theme-dark-btn" data-theme="dark" aria-pressed="false">
-                <span class="material-icons-round" aria-hidden="true">dark_mode</span>Dark
-              </button>
-              <button type="button" class="theme-opt-btn" id="theme-system-btn" data-theme="system" aria-pressed="false">
-                <span class="material-icons-round" aria-hidden="true">devices</span>System
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <h2 class="card-title">Data Management</h2>
-          <p class="card-body">All data is stored locally on this device. Nothing is sent to any external server.</p>
-          <div class="button-row">
-            <button id="export-data" class="btn-outlined" type="button"><span class="material-icons-round" aria-hidden="true">download</span>Export All Data (JSON)</button>
-            <button id="clear-data" class="btn-danger" type="button"><span class="material-icons-round" aria-hidden="true">delete_forever</span>Clear All Data</button>
-          </div>
-          <div class="button-row" style="margin-top:0.75rem;">
-            <button id="restart-onboarding" class="btn-outlined" type="button"><span class="material-icons-round" aria-hidden="true">tour</span>Restart Onboarding Tour</button>
-          </div>
-        </div>
-        <div class="card settings-links-card">
-          <h2 class="card-title">Legal &amp; Info</h2>
-          <div class="settings-link-list">
-            <button class="settings-link-item" data-page="privacy"><span class="material-icons-round" aria-hidden="true">privacy_tip</span><span>Privacy Policy</span><span class="material-icons-round settings-link-arrow" aria-hidden="true">chevron_right</span></button>
-            <button class="settings-link-item" data-page="credits"><span class="material-icons-round" aria-hidden="true">stars</span><span>Credits</span><span class="material-icons-round settings-link-arrow" aria-hidden="true">chevron_right</span></button>
-            <button class="settings-link-item" data-page="about"><span class="material-icons-round" aria-hidden="true">info</span><span>About StudyHub</span><span class="material-icons-round settings-link-arrow" aria-hidden="true">chevron_right</span></button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="page-about" aria-label="About StudyHub">
-      <div class="page-inner">
-        <div class="mobile-page-header">
-          <button class="mobile-back-btn" data-page="settings" aria-label="Back to settings">
-            <span class="material-icons-round" aria-hidden="true">arrow_back</span>
-          </button>
-          <span class="mobile-page-title">About</span>
-        </div>
-        <header class="page-header"><h1 class="page-title">About StudyHub</h1></header>
-        <div class="card">
-          <span class="material-icons-round about-big-icon" aria-hidden="true">auto_stories</span>
-          <p class="card-body">StudyHub is an all-in-one wellness and productivity tool designed for students. It helps you track your emotional wellbeing, stay organized, and build healthy habits.</p>
-          <h3 class="subsection-heading" style="margin-top:1.5rem;">Features</h3>
-          <ul class="feature-list">
-            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Daily mood check-ins with emoji and slider input</li>
-            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Personal journal and notes with Markdown support</li>
-            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Habit tracker with weekly analytics</li>
-            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Pomodoro timer and study tools</li>
-            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Calendar and to-do list</li>
-            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Flashcard decks</li>
-            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Wellness activities and breathing exercises</li>
-            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Mood and habit insights with charts</li>
-            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Professional PDF wellness reports</li>
-            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Auto-save drafts for notes and journals</li>
-          </ul>
-          <p class="version-tag">Version 3.0 · All data stored locally · No account required</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="page-privacy" aria-label="Privacy Policy">
-      <div class="page-inner">
-        <div class="mobile-page-header">
-          <button class="mobile-back-btn" data-page="settings" aria-label="Back to settings">
-            <span class="material-icons-round" aria-hidden="true">arrow_back</span>
-          </button>
-          <span class="mobile-page-title">Privacy Policy</span>
-        </div>
-        <header class="page-header"><h1 class="page-title">Privacy Policy</h1></header>
-        <div class="card">
-          <h2 class="card-title">Your Privacy Matters</h2>
-          <p class="card-body">StudyHub is designed with student privacy as a priority.</p>
-          <h3 class="subsection-heading">Data Storage</h3>
-          <p class="card-body">All data you enter in StudyHub — moods, journal entries, habits, tasks, notes — is stored exclusively on your own device using your browser's local storage. No data is sent to any external server, cloud service, or database.</p>
-          <h3 class="subsection-heading">No Accounts Required</h3>
-          <p class="card-body">StudyHub does not require you to create an account or provide any personal information.</p>
-          <h3 class="subsection-heading">Report Exports</h3>
-          <p class="card-body">PDF reports are generated entirely within your browser. Sharing these reports is entirely your choice.</p>
-          <h3 class="subsection-heading">Data Deletion</h3>
-          <p class="card-body">You can clear all stored data at any time via Settings › Clear All Data.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="page-shop" aria-label="Shop">
-      <div class="page-inner">
-        <div class="mobile-page-header">
-          <button class="mobile-back-btn" data-page="home" aria-label="Back to home">
-            <span class="material-icons-round" aria-hidden="true">arrow_back</span>
-          </button>
-          <span class="mobile-page-title">Shop</span>
-        </div>
-        <header class="page-header">
-          <h1 class="page-title">Shop</h1>
-          <p class="page-subtitle">Spend your StudyCoins on helpful power-ups.</p>
-        </header>
-        <div class="coin-balance-card" id="coin-balance-card">
-          <span class="coin-balance-icon" aria-hidden="true"><span class="material-icons-round">toll</span></span>
-          <div>
-            <p class="coin-balance-label">Your balance</p>
-            <p class="coin-balance-value" id="coin-balance-display">0 StudyCoins</p>
-          </div>
-        </div>
-        <div class="card">
-          <h2 class="card-title">
-            <span class="material-icons-round card-title-icon" aria-hidden="true">storefront</span>
-            Available Items
-          </h2>
-          <div class="shop-grid" id="shop-grid"></div>
-        </div>
-        <div class="card">
-          <h2 class="card-title">
-            <span class="material-icons-round card-title-icon" aria-hidden="true">inventory_2</span>
-            Your Inventory
-          </h2>
-          <div id="inventory-list" class="inventory-list"></div>
-        </div>
-        <div class="card">
-          <h2 class="card-title">
-            <span class="material-icons-round card-title-icon" aria-hidden="true">receipt_long</span>
-            Coin History
-          </h2>
-          <div id="coin-history-list" class="coin-history-list"></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="page-credits" aria-label="Credits">
-      <div class="page-inner">
-        <div class="mobile-page-header">
-          <button class="mobile-back-btn" data-page="settings" aria-label="Back to settings">
-            <span class="material-icons-round" aria-hidden="true">arrow_back</span>
-          </button>
-          <span class="mobile-page-title">Credits</span>
-        </div>
-        <header class="page-header"><h1 class="page-title">Credits</h1></header>
-        <div class="card">
-          <h2 class="card-title">Created by</h2>
-          <div class="credits-author">
-            <span class="material-icons-round credits-author-icon" aria-hidden="true">person</span>
-            <div>
-              <p class="credits-author-name">Rainier Pearson Saputra</p>
-              <p class="credits-author-role">Designer &amp; Developer</p>
-            </div>
-          </div>
-          <h3 class="subsection-heading" style="margin-top:1.5rem;">Open Source &amp; Licenses</h3>
-          <ul class="credits-list">
-            <li><span class="material-icons-round" aria-hidden="true">open_in_new</span><span><strong>Material Icons</strong> — Google, Apache 2.0</span></li>
-            <li><span class="material-icons-round" aria-hidden="true">open_in_new</span><span><strong>jsPDF</strong> — Parallax, MIT License</span></li>
-            <li><span class="material-icons-round" aria-hidden="true">open_in_new</span><span><strong>Plus Jakarta Sans</strong> — Tokotype, SIL OFL</span></li>
-            <li><span class="material-icons-round" aria-hidden="true">open_in_new</span><span><strong>DM Sans</strong> — Colophon Foundry, SIL OFL</span></li>
-          </ul>
-          <h3 class="subsection-heading" style="margin-top:1.5rem;">Inspiration</h3>
-          <p class="card-body">Design system follows Google Material Design 3 (Material You) guidelines.</p>
-          <p class="credits-copyright">&copy; 2024 Rainier Pearson Saputra. All rights reserved.</p>
-        </div>
-      </div>
-    </section>
-
   </main>
 
   <nav class="bottom-nav" id="bottom-nav" role="navigation" aria-label="Mobile bottom navigation">
-    <button class="bnav-item active" data-page="home" aria-current="page" aria-label="Home">
+    <a href="index.html" class="bnav-item active" aria-label="Home">
       <div class="bnav-icon-wrap"><span class="material-icons-round bnav-icon" aria-hidden="true">cottage</span></div>
-    </button>
-    <button class="bnav-item" data-page="study" aria-label="Study Tools">
+    </a>
+    <a href="study.html" class="bnav-item" aria-label="Study Tools">
       <div class="bnav-icon-wrap"><span class="material-icons-round bnav-icon" aria-hidden="true">school</span></div>
-    </button>
-    <button class="bnav-item bnav-center" data-page="wellness" aria-label="Wellness">
+    </a>
+    <a href="wellness.html" class="bnav-item bnav-center" aria-label="Wellness">
       <span class="bnav-fab" aria-hidden="true"><span class="material-icons-round" aria-hidden="true">spa</span></span>
-    </button>
-    <button class="bnav-item" data-page="journal" aria-label="Journal">
+    </a>
+    <a href="journal.html" class="bnav-item" aria-label="Journal">
       <div class="bnav-icon-wrap"><span class="material-icons-round bnav-icon" aria-hidden="true">menu_book</span></div>
-    </button>
-    <button class="bnav-item" data-page="shop" aria-label="Shop">
+    </a>
+    <a href="shop.html" class="bnav-item" aria-label="Shop">
       <div class="bnav-icon-wrap"><span class="material-icons-round bnav-icon" aria-hidden="true">storefront</span></div>
-    </button>
+    </a>
   </nav>
 
 </div>
@@ -1141,6 +311,6 @@
 <div id="toast-container" class="toast-container" role="region" aria-label="Notifications" aria-live="assertive" aria-atomic="false"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="script.js"></script>
+<script type="module" src="js/script.js"></script>
 </body>
 </html>

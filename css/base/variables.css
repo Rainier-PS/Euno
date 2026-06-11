@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --md-primary: #6750A4;
+  --md-primary-hover: #5b45a0;
+  --md-on-primary: #FFFFFF;
+  --md-primary-container: #EADDFF;
+  --md-on-primary-container: #21005D;
+  --md-secondary: #625B71;
+  --md-on-secondary: #FFFFFF;
+  --md-secondary-container: #E8DEF8;
+  --md-on-secondary-container: #1D192B;
+  --md-tertiary: #7D5260;
+  --md-on-tertiary: #FFFFFF;
+  --md-tertiary-container: #FFD8E4;
+  --md-on-tertiary-container: #31111D;
+  --md-error: #B3261E;
+  --md-on-error: #FFFFFF;
+  --md-error-container: #F9DEDC;
+  --md-on-error-container: #410E0B;
+  --md-surface: #FFFBFE;
+  --md-surface-dim: #DED8E1;
+  --md-surface-bright: #FFFBFE;
+  --md-surface-container-lowest: #FFFFFF;
+  --md-surface-container-low: #F7F2FA;
+  --md-surface-container: #F3EDF7;
+  --md-surface-container-high: #ECE6F0;
+  --md-surface-container-highest: #E6E0E9;
+  --md-on-surface: #1C1B1F;
+  --md-on-surface-variant: #49454F;
+  --md-outline: #79747E;
+  --md-outline-variant: #CAC4D0;
+  --md-inverse-surface: #313033;
+  --md-inverse-on-surface: #F4EFF4;
+  --md-scrim: rgba(0,0,0,0.4);
+  --md-shadow: rgba(0,0,0,0.15);
+
+  --md-success: #186A3B;
+  --md-success-container: #D4EDDA;
+  --md-on-success-container: #0A3D20;
+  --md-warning: #8B5E00;
+  --md-warning-container: #FDEEBA;
+  --md-on-warning-container: #4A3200;
+
+  --md-mood-1: #B3261E;
+  --md-mood-2: #E8650A;
+  --md-mood-3: #8B5E00;
+  --md-mood-4: #186A3B;
+  --md-mood-5: #6750A4;
+
+  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'Roboto Mono', 'JetBrains Mono', 'Fira Code', monospace;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  --elevation-1: 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.07);
+  --elevation-2: 0 2px 6px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+  --elevation-3: 0 4px 12px rgba(0,0,0,0.14), 0 2px 4px rgba(0,0,0,0.1);
+  --elevation-4: 0 8px 24px rgba(0,0,0,0.16), 0 4px 8px rgba(0,0,0,0.1);
+
+  --sidebar-w: 280px;
+  --topbar-h: 64px;
+  --bnav-h: 80px;
+  --transition: 200ms cubic-bezier(0.2, 0, 0, 1);
+  --transition-spring: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --theme-btn-bg: #E6E0E9;
+  --theme-btn-bg-hover: #E6E0E9;
+  --theme-btn-border: #CAC4D0;
+  --theme-btn-color: #1C1B1F;
+  --theme-btn-hover-color: var(--md-primary);
+}
+
+[data-theme="dark"] {
+  --md-primary: #D0BCFF;
+  --md-primary-hover: #c4a8ff;
+  --md-on-primary: #381E72;
+  --md-primary-container: #4F378B;
+  --md-on-primary-container: #EADDFF;
+  --md-secondary: #CCC2DC;
+  --md-on-secondary: #332D41;
+  --md-secondary-container: #4A4458;
+  --md-on-secondary-container: #E8DEF8;
+  --md-tertiary: #EFB8C8;
+  --md-on-tertiary: #492532;
+  --md-tertiary-container: #633B48;
+  --md-on-tertiary-container: #FFD8E4;
+  --md-error: #F2B8B5;
+  --md-on-error: #601410;
+  --md-error-container: #8C1D18;
+  --md-on-error-container: #F9DEDC;
+  --md-surface: #141218;
+  --md-surface-dim: #141218;
+  --md-surface-bright: #3B383E;
+  --md-surface-container-lowest: #0F0D13;
+  --md-surface-container-low: #1D1B20;
+  --md-surface-container: #211F26;
+  --md-surface-container-high: #2B2930;
+  --md-surface-container-highest: #36343B;
+  --md-on-surface: #E6E1E5;
+  --md-on-surface-variant: #CAC4D0;
+
+  --theme-btn-bg: #E6E0E9;
+  --theme-btn-bg-hover: #E6E0E9;
+  --theme-btn-border: #CAC4D0;
+  --theme-btn-color: #1C1B1F;
+  --theme-btn-hover-color: var(--md-primary);
+  --md-outline: #938F99;
+  --md-outline-variant: #49454F;
+  --md-inverse-surface: #E6E1E5;
+  --md-inverse-on-surface: #313033;
+  --md-scrim: rgba(0,0,0,0.6);
+  --md-shadow: rgba(0,0,0,0.3);
+
+  --md-success: #A8D5B5;
+  --md-success-container: #1A4D2B;
+  --md-on-success-container: #A8D5B5;
+  --md-warning: #F5C842;
+  --md-warning-container: #4A3200;
+  --md-on-warning-container: #F5C842;
+
+  --md-mood-1: #F2B8B5;
+  --md-mood-2: #FFB77A;
+  --md-mood-3: #F5C842;
+  --md-mood-4: #A8D5B5;
+  --md-mood-5: #D0BCFF;
+
+  --elevation-1: 0 1px 2px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.2);
+  --elevation-2: 0 2px 6px rgba(0,0,0,0.35), 0 1px 2px rgba(0,0,0,0.25);
+  --elevation-3: 0 4px 12px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.28);
+  --elevation-4: 0 8px 24px rgba(0,0,0,0.45), 0 4px 8px rgba(0,0,0,0.3);
+}

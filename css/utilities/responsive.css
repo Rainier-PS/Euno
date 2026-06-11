@@ -1,0 +1,240 @@
+@media (max-width: 960px) {
+  .sidebar { display: none; }
+  .main-content {
+    margin-left: 0;
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+    overflow-x: hidden;
+    position: relative;
+  }
+  .mobile-drawer { display: block; }
+  .bottom-nav { display: flex; }
+  .page-inner { padding: 1.25rem 1rem 2rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .quick-actions-grid { grid-template-columns: repeat(4, 1fr); }
+  .toast-container { bottom: calc(64px + env(safe-area-inset-bottom, 0px) + 0.75rem); right: 1rem; }
+
+  .editor-toolbar { width: 100%; box-sizing: border-box; }
+  .toolbar-btn { width: 36px; height: 36px; flex-shrink: 0; }
+  .card { overflow: hidden; }
+  .notes-editor-textarea { min-width: 0; width: 100%; box-sizing: border-box; }
+
+  .greeting-avatar { display: none; }
+
+  .desktop-back-btn { display: none; }
+
+  .mobile-page-header {
+    display: flex;
+    padding: 0.5rem 0 0.75rem;
+  }
+
+  .mobile-page-header + header.page-header:not(.checkin-page-header) {
+    display: none;
+  }
+
+  .mobile-page-header + header.checkin-page-header .page-title {
+    display: none;
+  }
+
+  .mobile-page-header--home {
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobile-home-greeting {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    min-width: 0;
+    overflow: hidden;
+    text-align: right;
+    margin-left: auto;
+  }
+
+  .mobile-home-greeting #mobile-greeting-time {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--md-on-surface-variant);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+  }
+
+  .mobile-home-greeting #mobile-greeting-name {
+    font-family: var(--font-display);
+    font-size: 1.0rem;
+    font-weight: 800;
+    color: var(--md-on-surface);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #page-home .home-greeting-row {
+    display: none;
+  }
+
+  .checkin-page-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .checkin-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .mobile-checkin-avatar {
+    display: flex;
+    flex-shrink: 0;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: var(--md-primary-container);
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--elevation-1);
+  }
+
+  .mobile-checkin-avatar .material-icons-round {
+    font-size: 1.875rem;
+    color: var(--md-on-primary-container);
+  }
+
+  .app-footer { padding-bottom: calc(var(--bnav-h) + 0.75rem); }
+
+  .date-display-input,
+  .time-display-input {
+    background: var(--md-surface-container-high) !important;
+    color: var(--md-on-surface) !important;
+    border-color: var(--md-outline) !important;
+    -webkit-text-fill-color: var(--md-on-surface);
+  }
+
+  .date-display-input::placeholder,
+  .time-display-input::placeholder {
+    color: var(--md-on-surface-variant) !important;
+    opacity: 0.8;
+  }
+
+  .dp-day {
+    color: var(--md-on-surface) !important;
+    font-size: 0.9rem;
+    min-height: 40px;
+  }
+
+  .dp-day.today {
+    color: var(--md-primary) !important;
+    border: 2px solid var(--md-primary) !important;
+    font-weight: 800;
+  }
+
+  .dp-day.selected {
+    background: var(--md-primary) !important;
+    color: var(--md-on-primary) !important;
+  }
+
+  .cal-nav select.input-field {
+    background: var(--md-surface-container-high);
+    color: var(--md-on-surface);
+    min-width: 90px;
+  }
+
+  .streak-cal-btn {
+    display: flex;
+    flex-shrink: 0;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: var(--md-primary-container);
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--elevation-1);
+    cursor: pointer;
+    border: none;
+  }
+
+  .streak-cal-btn .material-icons-round {
+    font-size: 1.875rem;
+    color: var(--md-on-primary-container);
+  }
+}
+
+@media (min-width: 961px) {
+  .streak-cal-btn {
+    display: flex;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--md-primary-container);
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--elevation-1);
+    cursor: pointer;
+    border: none;
+  }
+
+  .streak-cal-btn .material-icons-round {
+    font-size: 1.5rem;
+    color: var(--md-on-primary-container);
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.625rem; }
+  .quick-actions-grid { grid-template-columns: repeat(2, 1fr); gap: 0.625rem; }
+  .insights-summary-grid { grid-template-columns: repeat(2, 1fr); }
+  .mood-emoji-grid { gap: 0.375rem; }
+  .mood-btn { padding: 0.75rem 0.25rem; }
+  .mood-btn .material-icons-round { font-size: 1.75rem; }
+  .timer-ring-wrap, .timer-svg { width: 188px; height: 188px; }
+  .timer-digits { font-size: 2.1rem; }
+  .page-inner { padding: 1rem 0.875rem 2rem; }
+  .card { padding: 1.25rem 1rem; }
+  .mood-hero-card { flex-direction: column; align-items: flex-start; }
+  .week-moods-strip { gap: 0.375rem; }
+  .challenges-grid { grid-template-columns: repeat(2, 1fr); }
+  .onboarding-tooltip { max-width: calc(100vw - 2rem); padding: 1.25rem 1.125rem 1rem; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .breathing-ring-wrap { width: 170px; height: 170px; }
+  .breathing-circle { width: 140px; height: 140px; }
+  .settings-actions-row { flex-direction: column; }
+  .settings-action-btn { width: 100%; }
+  .week-moods-strip { gap: 0.25rem; }
+  .week-mood-item { padding: 0.5rem 0.125rem; }
+  .mood-dot { width: 24px; height: 24px; }
+  .mood-dot .material-icons-round { font-size: 0.9rem; }
+  .week-mood-item .mood-day { font-size: 0.55rem; }
+  .theme-toggle-row { gap: 0.375rem; }
+  .theme-opt-btn { padding: 0.5rem 0.875rem; font-size: 0.8rem; }
+}
+
+@media (max-width: 400px) {
+  .quick-actions-grid { grid-template-columns: repeat(2, 1fr); }
+  .qa-card { padding: 1rem 0.375rem; }
+  .tab { padding: 0.55rem 0.75rem; font-size: 0.8rem; }
+}
+
+@media (min-width: 961px) {
+  .streak-cal-btn {
+    display: flex;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--md-primary-container);
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--elevation-1);
+    cursor: pointer;
+    border: none;
+  }
+
+  .streak-cal-btn .material-icons-round {
+    font-size: 1.5rem;
+    color: var(--md-on-primary-container);
+  }
+}

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="description" content="StudyHub — Your all-in-one wellness and study companion. Track moods, build habits, focus with Pomodoro, journal your thoughts, and gain insights into your mental wellbeing.">
+<meta name="keywords" content="student wellness, mood tracker, habit tracker, pomodoro timer, study tools, mental health, journal, flashcards">
+<meta name="author" content="StudyHub">
+<meta name="theme-color" content="#6750A4">
+<meta property="og:title" content="StudyHub — Wellness &amp; Study Companion">
+<meta property="og:description" content="Track your mood, build healthy habits, and stay focused with StudyHub — the all-in-one student wellness app.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="StudyHub — Wellness &amp; Study Companion">
+<meta name="twitter:description" content="Track your mood, build healthy habits, and stay focused with StudyHub.">
+<title>StudyHub - About</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<link rel="stylesheet" href="css/index.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"StudyHub","description":"Student wellness and study companion app","applicationCategory":"EducationalApplication","operatingSystem":"Any"}</script>
+</head>
+<body>
+
+<div id="onboarding-overlay" class="onboarding-overlay" role="dialog" aria-modal="true" aria-label="Welcome to StudyHub" aria-describedby="onboarding-tooltip-body">
+  <svg class="onboarding-mask" id="onboarding-mask" aria-hidden="true" focusable="false">
+    <defs>
+      <mask id="spotlight-mask">
+        <rect width="100%" height="100%" fill="white"/>
+        <rect id="spotlight-hole" x="0" y="0" width="0" height="0" rx="0" ry="0" fill="black"/>
+      </mask>
+    </defs>
+    <rect width="100%" height="100%" fill="rgba(0,0,0,0.72)" mask="url(#spotlight-mask)"/>
+  </svg>
+
+  <div class="onboarding-tooltip" id="onboarding-tooltip" role="document">
+    <div class="onboarding-tooltip__header" id="onboarding-tooltip-header">
+      <span class="material-icons-round onboarding-tooltip__icon" id="onboarding-tooltip-icon" aria-hidden="true">auto_stories</span>
+      <span class="onboarding-tooltip__step-label" id="onboarding-tooltip-step" aria-live="polite">1 of 5</span>
+    </div>
+    <h2 class="onboarding-tooltip__title" id="onboarding-tooltip-title">Welcome to StudyHub</h2>
+    <p class="onboarding-tooltip__body" id="onboarding-tooltip-body">Your all-in-one wellness and study companion. Let's take a quick tour.</p>
+    <div class="onboarding-tooltip__dots" id="onboarding-dots" role="tablist" aria-label="Tour progress"></div>
+    <div class="onboarding-tooltip__actions">
+      <button id="onboarding-skip" class="btn-text onboarding-skip-btn" type="button">Skip tour</button>
+      <button id="onboarding-next" class="btn-filled onboarding-next-btn" type="button">
+        Next<span class="material-icons-round" aria-hidden="true">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="app" class="app">
+
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+    <div class="sidebar-header">
+      <span class="material-icons-round sidebar-logo" aria-hidden="true">auto_stories</span>
+      <span class="sidebar-brand-name">StudyHub</span>
+      <a href="shop.html" class="sidebar-coins" id="sidebar-coins" title="StudyCoins" aria-label="Go to shop"><span class="material-icons-round sidebar-coin-icon" aria-hidden="true">toll</span><span id="sidebar-coin-count">0</span></a>
+    </div>
+    <nav class="sidebar-nav" aria-label="Primary navigation">
+      <a href="index.html" class="nav-item" aria-label="Home">
+        <span class="nav-indicator" aria-hidden="true"></span>
+        <span class="material-icons-round nav-icon" aria-hidden="true">cottage</span>
+        <span class="nav-label">Home</span>
+      </a>
+      <a href="checkin.html" class="nav-item" aria-label="Daily Check-In">
+        <span class="nav-indicator" aria-hidden="true"></span>
+        <span class="material-icons-round nav-icon" aria-hidden="true">sentiment_satisfied</span>
+        <span class="nav-label">Check-In</span>
+      </a>
+      <a href="journal.html" class="nav-item" aria-label="Journal">
+        <span class="nav-indicator" aria-hidden="true"></span>
+        <span class="material-icons-round nav-icon" aria-hidden="true">menu_book</span>
+        <span class="nav-label">Journal</span>
+      </a>
+      <a href="insights.html" class="nav-item" aria-label="Insights">
+        <span class="nav-indicator" aria-hidden="true"></span>
+        <span class="material-icons-round nav-icon" aria-hidden="true">insights</span>
+        <span class="nav-label">Insights</span>
+      </a>
+      <a href="wellness.html" class="nav-item" aria-label="Wellness">
+        <span class="nav-indicator" aria-hidden="true"></span>
+        <span class="material-icons-round nav-icon" aria-hidden="true">spa</span>
+        <span class="nav-label">Wellness</span>
+      </a>
+      <a href="study.html" class="nav-item" aria-label="Study Tools">
+        <span class="nav-indicator" aria-hidden="true"></span>
+        <span class="material-icons-round nav-icon" aria-hidden="true">school</span>
+        <span class="nav-label">Study</span>
+      </a>
+      <a href="shop.html" class="nav-item" aria-label="Shop">
+        <span class="nav-indicator" aria-hidden="true"></span>
+        <span class="material-icons-round nav-icon" aria-hidden="true">storefront</span>
+        <span class="nav-label">Shop</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="settings.html" class="nav-item" aria-label="Settings">
+        <span class="nav-indicator" aria-hidden="true"></span>
+        <span class="material-icons-round nav-icon" aria-hidden="true">settings</span>
+        <span class="nav-label">Settings</span>
+      </a>
+    </div>
+  </aside>
+
+  <main class="main-content" id="main-content" role="main">
+    <header class="top-bar" id="top-bar" role="banner" aria-hidden="true" style="display:none!important;">
+    </header>
+
+    <div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-label="Navigation menu" aria-hidden="true">
+      <div class="drawer-scrim" id="drawer-scrim" aria-hidden="true"></div>
+      <nav class="drawer-panel" id="drawer-panel" tabindex="-1">
+        <div class="drawer-header">
+          <span class="material-icons-round sidebar-logo" aria-hidden="true">auto_stories</span>
+          <span class="sidebar-brand-name">StudyHub</span>
+          <button class="icon-btn drawer-close" id="drawer-close" aria-label="Close navigation menu">
+            <span class="material-icons-round" aria-hidden="true">close</span>
+          </button>
+        </div>
+        <a href="index.html" class="drawer-item"><span class="material-icons-round" aria-hidden="true">cottage</span>Home</a>
+        <a href="checkin.html" class="drawer-item"><span class="material-icons-round" aria-hidden="true">sentiment_satisfied</span>Check-In</a>
+        <a href="journal.html" class="drawer-item"><span class="material-icons-round" aria-hidden="true">menu_book</span>Journal</a>
+        <a href="insights.html" class="drawer-item"><span class="material-icons-round" aria-hidden="true">insights</span>Insights</a>
+        <a href="wellness.html" class="drawer-item"><span class="material-icons-round" aria-hidden="true">spa</span>Wellness</a>
+        <a href="study.html" class="drawer-item"><span class="material-icons-round" aria-hidden="true">school</span>Study</a>
+        <a href="shop.html" class="drawer-item"><span class="material-icons-round" aria-hidden="true">storefront</span>Shop</a>
+        <div class="drawer-divider" role="separator"></div>
+        <a href="settings.html" class="drawer-item"><span class="material-icons-round" aria-hidden="true">settings</span>Settings</a>
+      </nav>
+    </div>
+
+    <section class="page" id="page-about" aria-label="About StudyHub">
+      <div class="page-inner">
+        <div class="mobile-page-header">
+          <a href="settings.html" class="mobile-back-btn" aria-label="Back to settings">
+            <span class="material-icons-round" aria-hidden="true">arrow_back</span>
+          </a>
+          <span class="mobile-page-title">About</span>
+        </div>
+        <header class="page-header">
+          <a href="settings.html" class="desktop-back-btn" aria-label="Back to settings">
+            <span class="material-icons-round" aria-hidden="true">arrow_back</span>
+          </a>
+          <h1 class="page-title">About StudyHub</h1>
+        </header>
+        <div class="card">
+          <span class="material-icons-round about-big-icon" aria-hidden="true">auto_stories</span>
+          <p class="card-body">StudyHub is an all-in-one wellness and productivity tool designed for students. It helps you track your emotional wellbeing, stay organized, and build healthy habits.</p>
+          <h3 class="subsection-heading" style="margin-top:1.5rem;">Features</h3>
+          <ul class="feature-list">
+            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Daily mood check-ins with slider input</li>
+            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Personal journal and notes with Markdown support</li>
+            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Habit tracker with weekly analytics</li>
+            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Pomodoro timer and study tools</li>
+            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Calendar and to-do list</li>
+            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Flashcard decks</li>
+            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Wellness activities and breathing exercises</li>
+            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Mood and habit insights with charts</li>
+            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Professional PDF wellness reports</li>
+            <li><span class="material-icons-round" aria-hidden="true">check_circle</span>Auto-save drafts for notes and journals</li>
+          </ul>
+          <p class="version-tag">Version 3.0 · All data stored locally · No account required</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <nav class="bottom-nav" id="bottom-nav" role="navigation" aria-label="Mobile bottom navigation">
+    <a href="index.html" class="bnav-item" aria-label="Home">
+      <div class="bnav-icon-wrap"><span class="material-icons-round bnav-icon" aria-hidden="true">cottage</span></div>
+    </a>
+    <a href="study.html" class="bnav-item" aria-label="Study Tools">
+      <div class="bnav-icon-wrap"><span class="material-icons-round bnav-icon" aria-hidden="true">school</span></div>
+    </a>
+    <a href="wellness.html" class="bnav-item bnav-center" aria-label="Wellness">
+      <span class="bnav-fab" aria-hidden="true"><span class="material-icons-round" aria-hidden="true">spa</span></span>
+    </a>
+    <a href="journal.html" class="bnav-item" aria-label="Journal">
+      <div class="bnav-icon-wrap"><span class="material-icons-round bnav-icon" aria-hidden="true">menu_book</span></div>
+    </a>
+    <a href="shop.html" class="bnav-item" aria-label="Shop">
+      <div class="bnav-icon-wrap"><span class="material-icons-round bnav-icon" aria-hidden="true">storefront</span></div>
+    </a>
+  </nav>
+
+</div>
+
+<div id="streak-calendar-dialog" class="picker-dialog streak-cal-dialog" role="dialog" aria-modal="true" aria-label="Check-in streak calendar" aria-hidden="true">
+  <div class="picker-scrim" id="streak-cal-scrim"></div>
+  <div class="picker-surface streak-cal-surface">
+    <div class="streak-cal-header">
+      <span class="material-icons-round streak-cal-fire" aria-hidden="true">local_fire_department</span>
+      <div class="streak-cal-stats">
+        <div class="streak-cal-stat"><span class="streak-cal-stat-val" id="streak-cal-current">0</span><span class="streak-cal-stat-lbl">Current streak</span></div>
+        <div class="streak-cal-divider"></div>
+        <div class="streak-cal-stat"><span class="streak-cal-stat-val" id="streak-cal-longest">0</span><span class="streak-cal-stat-lbl">Longest streak</span></div>
+      </div>
+    </div>
+    <div class="streak-cal-body">
+      <div class="streak-cal-nav">
+        <button type="button" class="icon-btn" id="streak-cal-prev" aria-label="Previous month"><span class="material-icons-round" aria-hidden="true">chevron_left</span></button>
+        <span class="streak-cal-month-label" id="streak-cal-month-label"></span>
+        <button type="button" class="icon-btn" id="streak-cal-next" aria-label="Next month"><span class="material-icons-round" aria-hidden="true">chevron_right</span></button>
+      </div>
+      <div class="streak-cal-weekdays" aria-hidden="true"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
+      <div class="streak-cal-days" id="streak-cal-days"></div>
+    </div>
+    <div class="picker-actions">
+      <button type="button" class="btn-filled" id="streak-cal-close">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="date-picker-dialog" class="picker-dialog" role="dialog" aria-modal="true" aria-label="Select date" aria-hidden="true">
+  <div class="picker-scrim"></div>
+  <div class="picker-surface date-picker-surface">
+    <div class="picker-header">
+      <div class="picker-header-text">
+        <span class="picker-selected-date" id="dp-selected-label">Select date</span>
+        <button type="button" class="picker-header-toggle" id="dp-toggle-mode" aria-label="Switch view"><span class="material-icons-round" aria-hidden="true">edit</span></button>
+      </div>
+    </div>
+    <div class="dp-calendar-view" id="dp-calendar-view">
+      <div class="dp-nav">
+        <button type="button" class="icon-btn" id="dp-prev-month" aria-label="Previous month"><span class="material-icons-round" aria-hidden="true">chevron_left</span></button>
+        <button type="button" class="dp-month-year-btn" id="dp-month-year-btn" aria-label="Select month and year">
+          <span id="dp-month-year-label"></span><span class="material-icons-round dp-arrow" aria-hidden="true">arrow_drop_down</span>
+        </button>
+        <button type="button" class="icon-btn" id="dp-next-month" aria-label="Next month"><span class="material-icons-round" aria-hidden="true">chevron_right</span></button>
+      </div>
+      <div class="dp-weekdays" aria-hidden="true"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
+      <div class="dp-days" id="dp-days" role="grid" aria-label="Calendar days"></div>
+    </div>
+    <div class="dp-year-view" id="dp-year-view" style="display:none;">
+      <div class="dp-year-grid" id="dp-year-grid"></div>
+    </div>
+    <div class="picker-actions">
+      <button type="button" class="btn-text" id="dp-cancel">Cancel</button>
+      <button type="button" class="btn-filled" id="dp-ok">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="time-picker-dialog" class="picker-dialog" role="dialog" aria-modal="true" aria-label="Select time" aria-hidden="true">
+  <div class="picker-scrim"></div>
+  <div class="picker-surface time-picker-surface">
+    <div class="picker-header">
+      <div class="picker-header-text"><span class="tp-selected-time" id="tp-selected-label">Select time</span></div>
+    </div>
+    <div class="tp-body">
+      <div class="tp-time-display">
+        <button type="button" class="tp-segment active" id="tp-hour-btn" aria-label="Select hour (click again to type)"><span id="tp-hour-display">12</span></button>
+        <span class="tp-colon">:</span>
+        <button type="button" class="tp-segment" id="tp-min-btn" aria-label="Select minute (click again to type)"><span id="tp-min-display">00</span></button>
+        <div class="tp-period">
+          <button type="button" class="tp-period-btn active" id="tp-am" aria-label="AM" aria-pressed="true">AM</button>
+          <button type="button" class="tp-period-btn" id="tp-pm" aria-label="PM" aria-pressed="false">PM</button>
+        </div>
+      </div>
+      <p class="tp-input-hint" id="tp-input-hint">Tap a field again to type</p>
+      <div class="tp-clock-wrap" id="tp-clock-wrap" aria-hidden="true">
+        <div class="tp-clock" id="tp-clock">
+          <div class="tp-clock-center" id="tp-clock-center"></div>
+          <div class="tp-clock-hand" id="tp-clock-hand"></div>
+          <div class="tp-clock-numbers" id="tp-clock-numbers"></div>
+        </div>
+      </div>
+    </div>
+    <div class="picker-actions">
+      <button type="button" class="btn-text" id="tp-cancel">Cancel</button>
+      <button type="button" class="btn-filled" id="tp-ok">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container" class="toast-container" role="region" aria-label="Notifications" aria-live="assertive" aria-atomic="false"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script type="module" src="js/script.js"></script>
+</body>
+</html>

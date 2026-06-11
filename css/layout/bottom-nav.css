@@ -1,0 +1,82 @@
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: var(--md-surface-container);
+  border-top: 1px solid var(--md-outline-variant);
+  z-index: 200;
+  padding: 0 0.5rem;
+  align-items: center;
+  justify-content: space-around;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: auto;
+}
+
+.bnav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: none;
+  border: none;
+  color: var(--md-on-surface-variant);
+  font-size: 0;
+  font-family: var(--font-body);
+  padding: 0.25rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: color var(--transition);
+  flex: 1;
+  position: relative;
+}
+
+.bnav-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-spring), transform var(--transition-spring);
+}
+
+.bnav-item.active .bnav-icon-wrap {
+  background: var(--md-secondary-container);
+  transform: scale(1.05);
+}
+
+.bnav-icon {
+  font-size: 1.625rem;
+  transition: transform var(--transition-spring);
+}
+
+.bnav-item.active .bnav-icon {
+  color: var(--md-on-secondary-container);
+}
+
+.bnav-fab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 36px;
+  background: var(--md-primary-container);
+  border-radius: var(--radius-full);
+  color: var(--md-on-primary-container);
+  font-size: 1.375rem;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.bnav-center.active .bnav-fab {
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+}
+
+.bnav-label {
+  display: none;
+}

@@ -1,0 +1,33 @@
+# IDE and editor configuration
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Node.js (if used in future)
+node_modules/
+npm-debug.log
+package-lock.json
+
+# Logs
+*.log
+
+# Temporary files
+.temp/
+tmp/
+
+# Build outputs (if applicable)
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+
+# Kiro specifications (internal notes)
+.kiro/

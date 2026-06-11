@@ -1,0 +1,114 @@
+.insights-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.insights-chart {
+  background: var(--md-surface);
+  border: 1px solid var(--md-outline-variant);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  box-shadow: var(--elevation-1);
+}
+
+.insights-chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.insights-chart-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--md-on-surface);
+}
+
+.insights-chart-period {
+  display: flex;
+  gap: 0.25rem;
+  background: var(--md-surface-container);
+  border-radius: var(--radius-full);
+  padding: 0.25rem;
+}
+
+.insights-period-btn {
+  padding: 0.375rem 0.75rem;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--md-on-surface-variant);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.insights-period-btn.active {
+  background: var(--md-surface);
+  color: var(--md-primary);
+  font-weight: 700;
+}
+
+.chart-placeholder {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--md-surface-container);
+  border-radius: var(--radius-lg);
+  color: var(--md-on-surface-variant);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.insights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.insight-item {
+  background: var(--md-surface);
+  border: 1px solid var(--md-outline-variant);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem;
+  box-shadow: var(--elevation-1);
+}
+
+.insight-item-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.insight-item-icon {
+  font-size: 1.5rem;
+  color: var(--md-primary);
+}
+
+.insight-item-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--md-on-surface);
+}
+
+.insight-item-content {
+  font-size: 0.9rem;
+  color: var(--md-on-surface-variant);
+  line-height: 1.6;
+}
+
+.insight-item-date {
+  font-size: 0.7rem;
+  color: var(--md-on-surface-variant);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
+}

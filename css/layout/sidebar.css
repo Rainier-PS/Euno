@@ -1,0 +1,149 @@
+.app {
+  display: flex;
+  min-height: 100dvh;
+}
+
+.sidebar {
+  width: var(--sidebar-w);
+  min-height: 100dvh;
+  background: var(--md-surface-container-low);
+  border-right: 1px solid var(--md-outline-variant);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.75rem 1.5rem;
+  z-index: 200;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-logo {
+  font-size: 1.75rem;
+  color: var(--md-primary);
+}
+
+.sidebar-brand-name {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--md-on-surface);
+  letter-spacing: -0.02em;
+}
+
+.sidebar-coins {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--md-on-surface-variant);
+  margin-left: auto;
+  padding: 0.25rem 0.5rem;
+  background: var(--md-surface-container);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.sidebar-coin-icon {
+  font-size: 1rem;
+  color: var(--md-primary);
+  line-height: 1;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.sidebar-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.sidebar-footer {
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--md-outline-variant);
+  margin-top: 0.5rem;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0 1rem 0 1.25rem;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: transparent;
+  border: none;
+  color: var(--md-on-surface-variant);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+  width: 100%;
+  text-align: left;
+  overflow: hidden;
+}
+
+.nav-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity var(--transition);
+  border-radius: inherit;
+}
+
+.nav-item:hover::before {
+  opacity: 0.08;
+}
+
+.nav-item:hover {
+  color: var(--md-on-surface);
+}
+
+.nav-indicator {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  width: 4px;
+  height: 70%;
+  background: var(--md-primary);
+  border-radius: 0 4px 4px 0;
+  transition: transform var(--transition-spring);
+}
+
+.nav-item.active .nav-indicator {
+  transform: translateY(-50%) scaleY(1);
+}
+
+.nav-item.active {
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container);
+  font-weight: 700;
+}
+
+.nav-item.active .nav-icon {
+  color: var(--md-on-secondary-container);
+}
+
+.nav-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  transition: color var(--transition);
+}
+
+.nav-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}

@@ -1,0 +1,331 @@
+.pomodoro-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.pomo-duration-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.pomo-duration-label {
+  font-size: 0.875rem;
+  color: var(--md-on-surface-variant);
+  font-weight: 600;
+}
+
+.pomo-duration-value {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--md-primary);
+}
+
+.pomo-modes {
+  display: flex;
+  gap: 0;
+  background: var(--md-surface-container);
+  border-radius: var(--radius-full);
+  padding: 0.375rem;
+  margin-bottom: 1.5rem;
+}
+
+.pmode {
+  padding: 0.625rem 1.25rem;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  color: var(--md-on-surface-variant);
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.pmode.active {
+  background: var(--md-surface);
+  color: var(--md-primary);
+  font-weight: 700;
+  box-shadow: var(--elevation-1);
+}
+
+.timer-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem 1.5rem;
+}
+
+#timer-display-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.timer-ring-wrap {
+  position: relative;
+  width: 216px;
+  height: 216px;
+  flex-shrink: 0;
+  margin-bottom: 1rem;
+}
+
+.timer-svg {
+  width: 216px;
+  height: 216px;
+  transform: rotate(-90deg);
+}
+
+.timer-track {
+  fill: none;
+  stroke: var(--md-surface-container-high);
+  stroke-width: 8;
+}
+
+.timer-progress {
+  fill: none;
+  stroke: var(--md-primary);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 553;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.timer-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.timer-digits {
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--md-on-surface);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.timer-mode-label {
+  font-size: 0.65rem;
+  color: var(--md-on-surface-variant);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+}
+
+.clock-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 216px;
+  height: 216px;
+  background: var(--md-surface-container);
+  border-radius: 50%;
+  border: 2px solid var(--md-outline-variant);
+  font-family: var(--font-mono);
+}
+
+.pomo-settings {
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 0;
+}
+
+.pomo-duration-input {
+  width: 100px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-mono);
+}
+
+.inline-input {
+  width: 80px;
+  text-align: center;
+}
+
+.timer-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.timer-controls .btn-filled {
+  min-width: 120px;
+}
+
+.timer-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition);
+  font-family: var(--font-body);
+}
+
+.timer-btn--primary {
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+}
+
+.timer-btn--primary:hover {
+  box-shadow: var(--elevation-2);
+  transform: translateY(-1px);
+}
+
+.timer-btn--secondary {
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container);
+}
+
+.timer-btn--secondary:hover {
+  box-shadow: var(--elevation-1);
+}
+
+.timer-btn .material-icons-round {
+  font-size: 1.25rem;
+}
+
+.timer-settings {
+  background: var(--md-surface);
+  border: 1px solid var(--md-outline-variant);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.timer-setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.timer-setting-row:last-child {
+  margin-bottom: 0;
+}
+
+.timer-setting-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--md-on-surface);
+}
+
+.timer-setting-input {
+  width: 100px;
+  text-align: center;
+}
+
+.session-count {
+  font-size: 0.875rem;
+  color: var(--md-on-surface-variant);
+  font-weight: 600;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.session-count span {
+  color: var(--md-primary);
+  font-weight: 700;
+}
+
+.countdown-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--md-outline-variant);
+  margin-top: 1rem;
+}
+
+.countdown-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.countdown-input-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.countdown-num {
+  width: 64px;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+.countdown-lbl {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--md-on-surface-variant);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.countdown-sep {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--md-on-surface-variant);
+  margin-bottom: 1rem;
+}
+
+.countdown-display {
+  font-size: 2.5rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--md-on-surface);
+  letter-spacing: 0.05em;
+}
+
+.pomo-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  background: var(--md-primary-container);
+  border-radius: var(--radius-lg);
+  padding: 0.875rem 1rem;
+  font-size: 0.825rem;
+  color: var(--md-on-primary-container);
+  width: 100%;
+  text-align: left;
+}
+
+.pomo-tip-icon {
+  font-size: 1.125rem;
+  color: var(--md-primary);
+  flex-shrink: 0;
+}
