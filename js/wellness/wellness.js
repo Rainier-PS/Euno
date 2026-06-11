@@ -14,6 +14,21 @@ export function initWellness() {
       btn.classList.add('active'); btn.setAttribute('aria-pressed','true');
       selectedBreathType = btn.dataset.type;
       stopBreathing();
+      const ringWrap = document.getElementById('breathing-ring-wrap');
+      if (ringWrap) {
+        if (selectedBreathType === 'box') ringWrap.classList.add('box-shape');
+        else ringWrap.classList.remove('box-shape');
+      }
+      if (selectedBreathType === 'box') {
+        const perimeter = document.getElementById('breathing-perimeter');
+        if (perimeter) perimeter.style.opacity = '1';
+        const topSide = document.getElementById('perimeter-top');
+        if (topSide) topSide.classList.add('active');
+      } else {
+        const perimeter = document.getElementById('breathing-perimeter');
+        if (perimeter) perimeter.style.opacity = '0';
+        clearPerimeterAnimation();
+      }
     });
   });
 
@@ -61,15 +76,20 @@ function stopBreathing() {
   clearTimeout(breathTimer); breathRunning = false;
   const circle = document.getElementById('breathing-circle');
   const ring = document.getElementById('breathing-ring');
+  const ringWrap = document.getElementById('breathing-ring-wrap');
   const instr = document.getElementById('breath-instruction');
   const btn = document.getElementById('breath-toggle');
   if (circle) circle.className = 'breathing-circle';
   if (ring) ring.className = 'breathing-ring';
+  if (ringWrap) {
+    if (selectedBreathType !== 'box') ringWrap.classList.remove('box-shape');
+  }
   if (instr) instr.textContent = 'Press Start';
   if (btn) {
     btn.setAttribute('data-state', 'start');
     btn.innerHTML = '<span class="material-icons-round" aria-hidden="true">play_arrow</span>Start';
   }
+  clearPerimeterAnimation();
 }
 
 function runBreathPhase(phaseIdx) {
@@ -78,10 +98,37 @@ function runBreathPhase(phaseIdx) {
   const phase = pattern[phaseIdx];
   const circle = document.getElementById('breathing-circle');
   const ring = document.getElementById('breathing-ring');
+  const ringWrap = document.getElementById('breathing-ring-wrap');
   const instr = document.getElementById('breath-instruction');
   if (instr) instr.textContent = phase.phase;
-  if (circle) circle.className = 'breathing-circle ' + (phase.phase==='Inhale'?'expand':phase.phase==='Exhale'?'shrink':'hold');
-  if (ring) ring.className = 'breathing-ring ' + (phase.phase==='Inhale'?'expand':phase.phase==='Exhale'?'shrink':'hold');
+  if (circle) {
+    let circleClass = 'breathing-circle';
+    if (selectedBreathType === 'box') {
+      circleClass += ' box-shape';
+    } else {
+      circleClass += ' ' + (phase.phase==='Inhale'?'expand':phase.phase==='Exhale'?'shrink':'hold');
+    }
+    circle.className = circleClass;
+  }
+  if (ring) {
+    let ringClass = 'breathing-ring';
+    if (selectedBreathType === 'box') {
+      ringClass += ' box-shape';
+    } else {
+      ringClass += ' ' + (phase.phase==='Inhale'?'expand':phase.phase==='Exhale'?'shrink':'hold');
+    }
+    ring.className = ringClass;
+  }
+  if (ringWrap) {
+    if (selectedBreathType === 'box') ringWrap.classList.add('box-shape');
+    else ringWrap.classList.remove('box-shape');
+  }
+  if (selectedBreathType === 'box') {
+    updatePerimeterAnimation(phaseIdx, pattern.length);
+  } else {
+    clearPerimeterAnimation();
+  }
+
   breathTimer = setTimeout(() => {
     const nextIdx = (phaseIdx + 1) % pattern.length;
     if (nextIdx === 0) {
@@ -90,6 +137,25 @@ function runBreathPhase(phaseIdx) {
     }
     runBreathPhase(nextIdx);
   }, phase.dur);
+}
+
+function updatePerimeterAnimation(phaseIdx, totalPhases) {
+  const sides = ['perimeter-top', 'perimeter-right', 'perimeter-bottom', 'perimeter-left'];
+  sides.forEach(sideId => {
+    const side = document.getElementById(sideId);
+    if (side) side.classList.remove('active');
+  });
+  const activeSideId = sides[phaseIdx % sides.length];
+  const activeSide = document.getElementById(activeSideId);
+  if (activeSide) activeSide.classList.add('active');
+}
+
+function clearPerimeterAnimation() {
+  const sides = ['perimeter-top', 'perimeter-right', 'perimeter-bottom', 'perimeter-left'];
+  sides.forEach(sideId => {
+    const side = document.getElementById(sideId);
+    if (side) side.classList.remove('active');
+  });
 }
 
 function saveGratitude() {

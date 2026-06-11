@@ -21,7 +21,6 @@ function initDatePicker() {
     dpCurrentDate = d.toISOString().slice(0,10); renderDPCalendar();
   });
   document.getElementById('dp-month-year-btn') && document.getElementById('dp-month-year-btn').addEventListener('click', toggleDPYearView);
-  // FIX: dp-toggle-mode button (pencil icon in date picker header) had no event listener
   document.getElementById('dp-toggle-mode') && document.getElementById('dp-toggle-mode').addEventListener('click', toggleDPYearView);
   const dialog = document.getElementById('date-picker-dialog');
   const scrim = dialog && dialog.querySelector('.picker-scrim');
@@ -120,13 +119,10 @@ Object.defineProperty(_g, 'tpMode', { get() { return tpMode; }, set(v) { tpMode 
 function tpSmartPeriod(hour12, minute) {
   const now   = new Date();
   const nowM  = now.getHours() * 60 + now.getMinutes();
-  // Convert 12-hour to 24-hour bases
   const amH   = hour12 === 12 ? 0 : hour12;
   const pmH   = hour12 === 12 ? 12 : hour12 + 12;
   const amM   = amH * 60 + minute;
   const pmM   = pmH * 60 + minute;
-
-  // Prefer the upcoming time; if both are in the past, prefer the sooner past
   function dist(target) {
     let d = target - nowM;
     if (d < 0) d += 24 * 60;
@@ -145,13 +141,11 @@ function tpParseInput(raw) {
 
   let h, m;
 
-  // "HH:MM" or "H:MM"
   const colonMatch = stripped.match(/^(\d{1,2}):(\d{2})$/);
   if (colonMatch) {
     h = parseInt(colonMatch[1], 10);
     m = parseInt(colonMatch[2], 10);
   } else {
-    // "HHMM" or "HMM" or "HH" or "H"
     const digits = stripped.replace(/\D/g, '');
     if (digits.length === 4) {
       h = parseInt(digits.slice(0, 2), 10);
@@ -173,7 +167,6 @@ function tpParseInput(raw) {
     if (h >= 0 && h <= 23) {
       hasPM = h >= 12;
       hasAM = !hasPM;
-      // Leave h as-is for conversion below
     } else {
       return null;
     }
@@ -181,13 +174,11 @@ function tpParseInput(raw) {
 
   if (hasAM || hasPM) {
     if (h === 0) {
-      // 00:xx with no suffix interpreted as 12:xx AM
       h = 12; hasPM = false; hasAM = true;
     } else if (h > 23) {
       return null;
     }
     if (h > 12) {
-      // 24-hour given with suffix (e.g. "23:00 PM") — suffix wins, convert
       h = h % 12 || 12;
     }
     if (h === 0) h = 12;
@@ -238,7 +229,6 @@ function tpStartManualInput(field) {
     cleanup();
 
     if (field === 'hour') {
-      // Try full time parse first (e.g. user typed "1330" or "11:30 PM")
       const parsed = tpParseInput(raw);
       if (parsed) {
         tpHour   = parsed.hour;
@@ -249,7 +239,6 @@ function tpStartManualInput(field) {
           tpPeriod = tpSmartPeriod(tpHour, tpMinute);
         }
       } else {
-        // Bare hour number (1–12 or 1–23)
         let v = parseInt(raw, 10);
         if (!isNaN(v)) {
           if (v >= 13 && v <= 23) {
@@ -265,7 +254,6 @@ function tpStartManualInput(field) {
         }
       }
     } else {
-      // Minute field — accept 0–59
       let v = parseInt(raw, 10);
       if (!isNaN(v) && v >= 0 && v <= 59) tpMinute = v;
     }
@@ -306,7 +294,6 @@ function initTimePicker() {
   document.getElementById('tp-hour-btn')&&document.getElementById('tp-hour-btn').addEventListener('click', e => {
     if (e.target.classList && e.target.classList.contains('tp-seg-input')) return;
     if (tpMode === 'hour') {
-      // Already in hour mode, open manual input
       tpStartManualInput('hour');
     } else {
       tpMode = 'hour';
@@ -345,8 +332,6 @@ function initTimePicker() {
   const dialog=document.getElementById('time-picker-dialog');
   const scrim=dialog&&dialog.querySelector('.picker-scrim');
   scrim&&scrim.addEventListener('click',closeTimePicker);
-
-  // Add drag functionality to clock handle
   const handle = document.getElementById('tp-clock-handle');
   const hand = document.getElementById('tp-clock-hand');
   const clock = document.getElementById('tp-clock');
@@ -415,12 +400,8 @@ function initTimePicker() {
       isDragging = false;
       hand.style.transition = 'transform 0.1s cubic-bezier(0.4, 0, 0.2, 1)';
     };
-
-    // Handle drag events
     handle.addEventListener('mousedown', startDrag);
     handle.addEventListener('touchstart', startDrag, { passive: false });
-    
-    // Also allow dragging from the hand itself
     hand.addEventListener('mousedown', startDrag);
     hand.addEventListener('touchstart', startDrag, { passive: false });
     
@@ -441,7 +422,6 @@ function openTimePicker(initialTime, callback) {
     tpHour=h%12||12;
     tpMinute=m;
   } else {
-    // No initial time — default to now with smart AM/PM
     const now=new Date();
     tpHour=now.getHours()%12||12;
     tpMinute=now.getMinutes();
@@ -474,7 +454,6 @@ function updateTPSegments() {
   const hBtn=document.getElementById('tp-hour-btn'), mBtn=document.getElementById('tp-min-btn');
   if(hBtn){hBtn.classList.toggle('active',tpMode==='hour');const sp=hBtn.querySelector('span');if(sp)sp.textContent=tpHour;}
   if(mBtn){mBtn.classList.toggle('active',tpMode==='minute');const sp=mBtn.querySelector('span');if(sp)sp.textContent=String(tpMinute).padStart(2,'0');}
-  // Update hint: if in input mode show confirm hint, otherwise show tap-to-type
   const hint=document.getElementById('tp-input-hint');
   if(hint){hint.textContent=tpInputMode?'Enter to confirm, Esc to cancel':'Tap a field again to type';}
 }

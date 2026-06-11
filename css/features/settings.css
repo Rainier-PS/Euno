@@ -373,6 +373,16 @@
   color: var(--md-on-primary-container);
 }
 
+.credits-author-link {
+  color: var(--md-on-primary-container);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.credits-author-link:hover {
+  color: var(--md-primary);
+}
+
 .credits-author-role {
   font-size: 0.85rem;
   color: var(--md-on-primary-container);

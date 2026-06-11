@@ -54,8 +54,10 @@
 
   <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
     <div class="sidebar-header">
-      <span class="material-icons-round sidebar-logo" aria-hidden="true">auto_stories</span>
-      <span class="sidebar-brand-name">StudyHub</span>
+      <a href="index.html" class="sidebar-brand" aria-label="Go to home">
+        <span class="material-icons-round sidebar-logo" aria-hidden="true">auto_stories</span>
+        <span class="sidebar-brand-name">StudyHub</span>
+      </a>
       <a href="shop.html" class="sidebar-coins" id="sidebar-coins" title="StudyCoins" aria-label="Go to shop"><span class="material-icons-round sidebar-coin-icon" aria-hidden="true">toll</span><span id="sidebar-coin-count">0</span></a>
     </div>
     <nav class="sidebar-nav" aria-label="Primary navigation">
@@ -112,8 +114,10 @@
       <div class="drawer-scrim" id="drawer-scrim" aria-hidden="true"></div>
       <nav class="drawer-panel" id="drawer-panel" tabindex="-1">
         <div class="drawer-header">
-          <span class="material-icons-round sidebar-logo" aria-hidden="true">auto_stories</span>
-          <span class="sidebar-brand-name">StudyHub</span>
+          <a href="index.html" class="drawer-brand" aria-label="Go to home">
+            <span class="material-icons-round sidebar-logo" aria-hidden="true">auto_stories</span>
+            <span class="sidebar-brand-name">StudyHub</span>
+          </a>
           <button class="icon-btn drawer-close" id="drawer-close" aria-label="Close navigation menu">
             <span class="material-icons-round" aria-hidden="true">close</span>
           </button>
@@ -140,14 +144,22 @@
             <span id="mobile-greeting-time">Good morning</span>
             <span id="mobile-greeting-name">Student</span>
           </span>
+          <div id="golden-badge-mobile" class="golden-badge golden-badge--mobile" style="display:none;" aria-label="Golden Theme Badge">
+            <span class="material-icons-round" style="color:#FFD700;font-size:1.25rem;">workspace_premium</span>
+          </div>
         </div>
         <div class="home-greeting-row">
           <div>
             <p class="greeting-time" id="greeting-label-text">Good morning</p>
             <h1 class="greeting-name" id="greeting-name">Student</h1>
           </div>
-          <div class="greeting-avatar" id="greeting-avatar" aria-hidden="true">
-            <span class="material-icons-round" id="avatar-icon">face</span>
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <div id="golden-badge" class="golden-badge" style="display:none;" aria-label="Golden Theme Badge">
+              <span class="material-icons-round" style="color:#FFD700;font-size:1.5rem;">workspace_premium</span>
+            </div>
+            <a href="settings.html" class="greeting-avatar" id="greeting-avatar" aria-label="Go to settings">
+              <span class="material-icons-round" id="avatar-icon">face</span>
+            </a>
           </div>
         </div>
         <div class="mood-hero-card" id="today-mood-banner">

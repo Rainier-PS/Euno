@@ -222,8 +222,7 @@ Study Hub/
     ├── shop/shop.js
     ├── settings/settings.js
     ├── streak/streakCalendar.js
-    ├── migrations/migrateJournalReminders.js
-    └── tests/studyHubTests.js  # Not loaded by index.html
+    └── migrations/migrateJournalReminders.js
 ```
 
 ## Entry Point & Bootstrap
@@ -265,7 +264,6 @@ Each HTML page loads `css/index.css` (modular CSS), jsPDF CDN, and `<script type
 | `settings/settings.js` | `initSettings` |
 | `streak/streakCalendar.js` | `initStreakCalendar` |
 | `migrations/migrateJournalReminders.js` | Side-effect only — runs one-time migration on import |
-| `tests/studyHubTests.js` | Dev only — not loaded by `index.html` |
 
 ## Cross-Feature Imports (Actual)
 
@@ -307,13 +305,13 @@ Each feature module exports `init*` (and render helpers where needed). See **Mod
 - `notes/notes.js`: `scheduleNoteReminder`, `scheduleJournalReminder`, `checkReminders` (+ 60s interval)
 - `migrations/migrateJournalReminders.js`: runs once on import
 
-### Tests (`js/tests/studyHubTests.js`)
-- `StudyHub.runTests()` — import manually in dev; not wired in `index.html`
-
 ## Shared State Map
 
 ### Global Variables
-- `_notesState`: `{ query: '', sort: 'date-desc' }` - Notes search/sort state (module-scoped in `notes.js`, not on `window`)`n- `_journalState`: `{ query: '', sort: 'date-desc' }` - Journal search/sort state (module-scoped in `journal.js`, not on `window`)`n- `_todoState`: `{ query: '', sort: 'date-desc' }` - To-Do search/sort state (module-scoped in `todo.js`, not on `window`)`n- `calendarState`: `{ viewMode, month, year, day, selectedDate, notifications }` - Calendar view state
+- `_notesState`: `{ query: '', sort: 'date-desc' }` - Notes search/sort state (module-scoped in `notes.js`)
+- `_journalState`: `{ query: '', sort: 'date-desc' }` - Journal search/sort state (module-scoped in `journal.js`)
+- `_todoState`: `{ query: '', sort: 'date-desc' }` - To-Do search/sort state (module-scoped in `todo.js`)
+- `calendarState`: `{ viewMode, month, year, day, selectedDate, notifications }` - Calendar view state
 - `dpCallback`: Function - Date picker callback
 - `dpCurrentDate`: String - Date picker selected date
 - `tpCallback`: Function - Time picker callback

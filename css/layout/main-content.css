@@ -130,7 +130,7 @@
 }
 
 .mobile-home-greeting #mobile-greeting-time {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--md-on-surface-variant);
   white-space: nowrap;
@@ -141,7 +141,7 @@
 
 .mobile-home-greeting #mobile-greeting-name {
   font-family: var(--font-display);
-  font-size: 1.0rem;
+  font-size: 1.1rem;
   font-weight: 800;
   color: var(--md-on-surface);
   letter-spacing: -0.02em;

@@ -8,10 +8,12 @@ function getCoinBalance() { return getStorage('coins_balance', 0); }
 function setCoinBalance(v) { setStorage('coins_balance', Math.max(0, v)); updateCoinDisplay(); }
 
 export function addCoins(amount, reason) {
-  const newBal = getCoinBalance() + amount;
+  const doubleActive = getStorage('double_coins_active') === todayStr();
+  const finalAmount = doubleActive ? amount * 2 : amount;
+  const newBal = getCoinBalance() + finalAmount;
   setCoinBalance(newBal);
   const hist = getStorage('coins_history', []);
-  hist.unshift({ amount, reason, timestamp: Date.now(), balance: newBal });
+  hist.unshift({ amount: finalAmount, reason: doubleActive ? `${reason} (2x)` : reason, timestamp: Date.now(), balance: newBal });
   setStorage('coins_history', hist.slice(0, 100));
 }
 

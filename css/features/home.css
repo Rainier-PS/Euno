@@ -37,6 +37,51 @@
   color: var(--md-on-primary-container);
 }
 
+.golden-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+  flex-shrink: 0;
+}
+
+.golden-badge .material-icons-round {
+  color: #fff;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+}
+
+.golden-badge--mobile {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+  flex-shrink: 0;
+}
+
+.golden-badge--mobile .material-icons-round {
+  color: #fff;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+}
+
+@media (max-width: 960px) {
+  .golden-badge {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .golden-badge .material-icons-round {
+    font-size: 1.25rem;
+  }
+}
+
 .mood-hero-card {
   background: var(--md-primary);
   border-radius: var(--radius-xl);

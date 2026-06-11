@@ -11,6 +11,25 @@ let stopwatchTimer = null, stopwatchRunning = false, stopwatchSeconds = 0, stopw
 let clockTimer = null;
 
 export function initPomodoro() {
+  const focusBoostUnlocked = getStorage('focus_boost_unlocked', false);
+  const pomoSettings = document.getElementById('pomo-settings');
+  if (pomoSettings && focusBoostUnlocked) {
+    pomoSettings.innerHTML += `<div class="field-group"><label class="field-label">Preset</label><select id="pomo-preset" class="input-field"><option value="25">25 min (Standard)</option><option value="45">45 min (Focus Boost)</option></select></div>`;
+    const presetSelect = document.getElementById('pomo-preset');
+    if (presetSelect) {
+      presetSelect.addEventListener('change', () => {
+        const durInput = document.getElementById('pomo-duration');
+        if (durInput) {
+          durInput.value = presetSelect.value;
+          if (!pomodoroRunning) {
+            pomodoroSeconds = parseInt(presetSelect.value) * 60;
+            updatePomodoroDisplay();
+          }
+        }
+      });
+    }
+  }
+
   const pmodes = document.querySelectorAll('.pmode');
   pmodes.forEach(btn => {
     btn.addEventListener('click', () => {

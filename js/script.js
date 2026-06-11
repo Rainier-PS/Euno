@@ -21,38 +21,45 @@ import { initStreakCalendar } from './streak/streakCalendar.js';
 import { initCountdown } from './countdown/countdown.js';
 import { getStorage, setStorage } from './core/storage.js';
 import { showToast } from './utils/notifications.js';
-import './migrations/migrateJournalReminders.js';
+
 
 function checkFirstTimeProfile() {
   const profileName = getStorage('profile_name', '');
   const profilePromptShown = getStorage('profile_prompt_shown', false);
+  const onboardingDone = getStorage('onboarding_done', false);
   
   if (!profileName && !profilePromptShown) {
     setStorage('profile_prompt_shown', true);
     
-    setTimeout(() => {
-      const toast = document.createElement('div');
-      toast.className = 'toast toast-info';
-      toast.innerHTML = `
-        <div class="toast-content">
-          <span class="material-icons-round toast-icon">person</span>
-          <div class="toast-message">
-            <p class="toast-title">Complete Your Profile</p>
-            <p class="toast-body">Add your name to personalize your experience.</p>
-          </div>
-          <a href="settings.html" class="toast-action">Go to Settings</a>
-        </div>
-      `;
-      const container = document.getElementById('toast-container');
-      if (container) {
-        container.appendChild(toast);
-        setTimeout(() => toast.classList.add('show'), 10);
-        setTimeout(() => {
-          toast.classList.remove('show');
-          setTimeout(() => toast.remove(), 300);
-        }, 8000);
-      }
-    }, 2000);
+    if (onboardingDone) {
+      setTimeout(() => {
+        const toast = document.createElement('div');
+        toast.className = 'toast info';
+        toast.innerHTML = 'Complete your profile in Settings to personalize your experience. <a href="settings.html" style="color:inherit;text-decoration:underline;margin-left:0.5rem;">Go to Settings</a>';
+        const c = document.getElementById('toast-container');
+        if (c) {
+          c.appendChild(toast);
+          setTimeout(() => { toast.style.animation = 'toastOut 0.25s ease forwards'; setTimeout(() => toast.remove(), 250); }, 5000);
+        }
+      }, 1000);
+    } else {
+      const checkInterval = setInterval(() => {
+        const done = getStorage('onboarding_done', false);
+        if (done) {
+          clearInterval(checkInterval);
+          setTimeout(() => {
+            const toast = document.createElement('div');
+            toast.className = 'toast info';
+            toast.innerHTML = 'Complete your profile in Settings to personalize your experience. <a href="settings.html" style="color:inherit;text-decoration:underline;margin-left:0.5rem;">Go to Settings</a>';
+            const c = document.getElementById('toast-container');
+            if (c) {
+              c.appendChild(toast);
+              setTimeout(() => { toast.style.animation = 'toastOut 0.25s ease forwards'; setTimeout(() => toast.remove(), 250); }, 5000);
+            }
+          }, 1000);
+        }
+      }, 500);
+    }
   }
 }
 

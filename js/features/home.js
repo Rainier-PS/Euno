@@ -39,6 +39,16 @@ export function updateHomeDashboard() {
   const entriesEl = document.getElementById('home-entries');
   if (entriesEl) entriesEl.textContent = Object.keys(journals).length;
   
+  const themeUnlocked = getStorage('theme_unlocked', false);
+  const goldenBadgeEl = document.getElementById('golden-badge');
+  const goldenBadgeMobileEl = document.getElementById('golden-badge-mobile');
+  if (goldenBadgeEl) {
+    goldenBadgeEl.style.display = themeUnlocked ? 'flex' : 'none';
+  }
+  if (goldenBadgeMobileEl) {
+    goldenBadgeMobileEl.style.display = themeUnlocked ? 'flex' : 'none';
+  }
+  
   const moodHeroBtn = document.querySelector('.mood-hero-btn');
   const qaCheckinBtn = document.querySelector('.qa-card[data-page="checkin"] .qa-label');
   if (todayCheckin) {
