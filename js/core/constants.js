@@ -15,7 +15,7 @@ export const ONBOARDING_STEPS = [
     padding: 0
   },
   {
-    icon: 'cottage',
+    icon: 'home',
     title: 'Your Dashboard',
     body: 'See today\'s mood, habit progress, and quick actions at a glance every day.',
     targetSelector: '#page-home .page-inner',
