@@ -1,30 +1,20 @@
-# StudyHub Blueprint
+# Euno Blueprint
 
 > **Status:** Multi-page website with modular CSS and ES modules. Entry point is `index.html` at project root. This document describes the **current as-built** codebase — not a future target architecture.
 
 ## Feature Inventory
 
 ### Core Features
-- **Home Dashboard**: Greeting display, mood preview, quick stats, weekly mood visualization, insights teaser, coin balance display
-- **Daily Check-In**: Mood selection (emoji + slider), energy level, sleep hours, stress level, thoughts entry, wellness score calculation, streak tracking
+- **Home Dashboard**: Greeting display, mood preview, quick stats, weekly mood visualization, coin balance display
+- **Daily Check-In**: Mood selection (emoji + slider), energy level, sleep hours, stress level, thoughts entry, wellness score calculation, streak tracking, insights (summary statistics, mood charts, habit consistency, emotional patterns, PDF report generation)
 - **Journal System**:
-  - Notes: Markdown editor, labels, reminders, search/sort, draft auto-save
   - Journal Entries: Markdown editor, labels, reminders, search/sort, draft auto-save
-  - To-Do List: Tasks with priorities, deadlines, status tracking, search/sort, auto-cleanup
   - Habit Tracker: Weekly grid, completion tracking, metrics, CSV export
-- **Insights**: Summary statistics, mood charts (7-day, 30-day, distribution), habit consistency charts, wellness streaks, emotional patterns, weekly averages, PDF report generation
 - **Wellness**:
   - Breathing Exercises: 4-7-8, Box, Calm techniques with visual feedback
   - Gratitude Journal: 3 daily entries with history
   - Self-Care Challenges: Daily micro-challenges with completion tracking
   - Reflection Prompts: Rotating prompts for journaling
-- **Study Tools**:
-  - Pomodoro Timer: Focus/short break/long break modes, session tracking
-  - Stopwatch: Lap tracking, display updates
-  - Countdown Timer: Custom duration, browser notifications
-  - Calendar: Month/week/day/year views, event management, notifications
-  - Flashcards: Deck management, card review, correct/wrong tracking
-  - Music Player: Lo-Fi YouTube embeds, track switching
 - **Shop**: StudyCoins system, item purchasing, inventory management, coin history, power-ups (streak freeze, double coins, lucky spin, focus boost)
 - **Settings**: Profile (name, gender), theme selection (light/dark/system), data export/import, data clearing, onboarding restart
 - **Onboarding**: Interactive tour with spotlight highlighting, step navigation
@@ -50,35 +40,26 @@
 Home Dashboard
   ├─ Check-in data (mood, streaks)
   ├─ Journal data (recent entries count)
-  ├─ To-Do data (pending tasks)
   ├─ Habit data (completion tracking)
-  ├─ Pomodoro data (today's sessions)
   └─ Coins (balance display)
 
 Journal System
   ├─ Date/Time Pickers (for deadlines/reminders)
   ├─ Markdown Parser (for content rendering)
   ├─ Reminder System (for notifications)
-  ├─ Storage (notes, journals, todos, habits)
+  ├─ Storage (journals, habits)
   └─ Draft Auto-Save (debounced writes)
 
-Insights
+Daily Check-In (includes Insights)
   ├─ Check-in data (mood trends, streaks)
   ├─ Habit data (consistency, weekly completion)
   ├─ Journal data (entry count, streaks)
-  ├─ Pomodoro data (session count)
   └─ jsPDF library (report generation)
 
 Wellness
   ├─ Storage (gratitude entries, challenge progress)
   ├─ Timer utilities (breathing exercise phases)
   └─ Date utilities (challenge daily keys)
-
-Study Tools
-  ├─ Date/Time Pickers (calendar events, deadlines)
-  ├─ Storage (pomodoro sessions, flashcard decks, calendar events)
-  ├─ Timer utilities (pomodoro, stopwatch, countdown)
-  └─ Notification API (timer completion alerts)
 
 Shop
   ├─ Check-in data (coin earning on completion)
@@ -106,28 +87,28 @@ Navigation
 ### Cross-Cutting Dependencies
 - **Storage Layer**: All features depend on localStorage access via getStorage/setStorage
 - **Theme System**: All UI components depend on theme CSS variables and data-theme attribute
-- **Date/Time Utilities**: Check-in, Journal, Calendar, Reminders, Countdown
-- **Markdown Parser**: Notes, Journal
-- **Notification System**: Reminders, Timer alerts, Toast messages
+- **Date/Time Utilities**: Check-in, Journal, Reminders
+- **Markdown Parser**: Journal
+- **Notification System**: Reminders, Toast messages
 - **Coin System**: Check-in, Habits, Shop
 - **Sanitization**: All user input rendering
 
 ## Current Directory Structure
 
 ```
-Study Hub/
+Euno/
 ├── index.html              # Home page
 ├── about.html              # About page
-├── checkin.html            # Daily check-in page
+├── checkin.html            # Daily check-in page (includes insights)
 ├── credits.html            # Credits page
-├── insights.html           # Insights page
 ├── journal.html            # Journal page
 ├── privacy.html            # Privacy policy page
 ├── settings.html           # Settings page
 ├── shop.html               # Shop page
-├── study.html              # Study tools page
 ├── wellness.html           # Wellness page
-├── Blueprint.md
+├── readme.md               # Project readme
+├── docs/
+│   └── Blueprint.md        # This documentation
 ├── css/
 │   ├── base/
 │   │   ├── variables.css   # CSS custom properties and theme variables
@@ -150,15 +131,10 @@ Study Hub/
 │   ├── features/
 │   │   ├── home.css        # Home page feature styles
 │   │   ├── checkin.css     # Daily check-in feature styles
-│   │   ├── journal.css     # Journal/notes feature styles
+│   │   ├── journal.css     # Journal feature styles
 │   │   ├── pickers.css     # Date/time picker component styles
-│   │   ├── todo.css        # Todo list feature styles
 │   │   ├── habits.css      # Habit tracker feature styles
-│   │   ├── calendar.css    # Calendar feature styles
-│   │   ├── pomodoro.css    # Pomodoro timer feature styles
-│   │   ├── flashcards.css  # Flashcards feature styles
 │   │   ├── wellness.css    # Wellness (breathing, gratitude, challenges) feature styles
-│   │   ├── insights.css    # Insights/analytics feature styles
 │   │   ├── shop.css        # Shop/inventory feature styles
 │   │   ├── settings.css    # Settings page styles
 │   │   ├── onboarding.css  # Onboarding overlay styles
@@ -177,15 +153,13 @@ Study Hub/
 │   │   └── sidebar.html    # Sidebar navigation component
 │   ├── pages/
 │   │   ├── about.html      # About page content
-│   │   ├── checkin.html    # Daily check-in page content
+│   │   ├── checkin.html    # Daily check-in page content (includes insights)
 │   │   ├── credits.html    # Credits page content
 │   │   ├── home.html       # Home page content
-│   │   ├── insights.html   # Insights page content
 │   │   ├── journal.html    # Journal page content
 │   │   ├── privacy.html    # Privacy policy page content
 │   │   ├── settings.html   # Settings page content
 │   │   ├── shop.html       # Shop page content
-│   │   ├── study.html      # Study tools page content
 │   │   └── wellness.html   # Wellness page content
 │   ├── head.html           # Head section (meta tags, fonts, CSS)
 │   └── scripts.html        # Script section (jsPDF CDN, main script)
@@ -207,18 +181,9 @@ Study Hub/
     │   └── onboarding.js   # Spotlight tour; exposes initOnboarding.restart
     ├── journal/
     │   ├── journal.js      # Journal editor, history, save/load
-    │   └── editor.js       # Shared markdown editor helpers (notes + journal)
-    ├── notes/
-    │   └── notes.js        # Notes editor, list, reminders, checkReminders polling
-    ├── todo/todo.js
+    │   └── editor.js       # Shared markdown editor helpers
     ├── habits/habits.js
-    ├── calendar/calendar.js
-    ├── flashcards/flashcards.js
-    ├── music/music.js
-    ├── pomodoro/pomodoro.js   # Pomodoro, stopwatch, live clock, study sub-tabs
-    ├── countdown/countdown.js
     ├── wellness/wellness.js
-    ├── insights/insights.js   # Charts, analytics, PDF report (jsPDF CDN)
     ├── shop/shop.js
     ├── settings/settings.js
     ├── streak/streakCalendar.js
@@ -229,7 +194,7 @@ Study Hub/
 
 Each HTML page loads `css/index.css` (modular CSS), jsPDF CDN, and `<script type="module" src="js/script.js">`.
 
-`js/script.js` on `DOMContentLoaded` initializes all features. Side-effect imports: `migrateJournalReminders.js`. Reminder polling (`setInterval(checkReminders, 60000)`) runs from `notes.js` on module load.
+`js/script.js` on `DOMContentLoaded` initializes all features. Side-effect imports: `migrateJournalReminders.js`.
 
 **Still in `js/script.js` (not extracted):** `initNavigation()` (page routing, drawer), `initJournal()` (journal section tabs).
 
@@ -247,19 +212,11 @@ Each HTML page loads `css/index.css` (modular CSS), jsPDF CDN, and `<script type
 | `features/theme.js` | `initTheme`, `applyTheme`, `updateThemeBtns` |
 | `features/onboarding.js` | `initOnboarding` |
 | `features/home.js` | `initHome`, `updateHomeDashboard`, `calcCheckinStreak` |
-| `features/checkin.js` | `initCheckin`, `getCurrentWeekDates` |
+| `features/checkin.js` | `initCheckin`, `getCurrentWeekDates` (includes insights functionality) |
 | `journal/editor.js` | `setDraftStatus`, `applyMarkdown`, `insertAtCursor`, `setEditorMode` |
 | `journal/journal.js` | `initJournalEditor` |
-| `notes/notes.js` | `initNotesEditor`, `scheduleNoteReminder`, `scheduleJournalReminder`, `checkReminders` |
-| `todo/todo.js` | `initTodo`, `renderTodos` |
 | `habits/habits.js` | `initHabits`, `renderHabits` |
-| `calendar/calendar.js` | `initCalendar`, `renderCalendar` |
-| `flashcards/flashcards.js` | `initFlashcards` |
-| `music/music.js` | `initMusic` |
-| `pomodoro/pomodoro.js` | `initPomodoro` |
-| `countdown/countdown.js` | `initCountdown` |
 | `wellness/wellness.js` | `initWellness` |
-| `insights/insights.js` | `initInsights`, `renderInsights` |
 | `shop/shop.js` | `addCoins`, `updateCoinDisplay`, `initShop`, `renderShop`, `calcCheckinStreakWithFreezes` |
 | `settings/settings.js` | `initSettings` |
 | `streak/streakCalendar.js` | `initStreakCalendar` |
@@ -267,12 +224,11 @@ Each HTML page loads `css/index.css` (modular CSS), jsPDF CDN, and `<script type
 
 ## Cross-Feature Imports (Actual)
 
-- `insights.js` → `home.js`, `checkin.js`
-- `habits.js`, `pomodoro.js`, `journal.js`, `checkin.js`, `settings.js` → `home.js`
-- `checkin.js`, `habits.js`, `journal.js`, `pomodoro.js` → `shop.js` (for `addCoins`)
+- `checkin.js` → `home.js` (includes insights functionality)
+- `habits.js`, `journal.js`, `checkin.js`, `settings.js` → `home.js`
+- `checkin.js`, `habits.js`, `journal.js` → `shop.js` (for `addCoins`)
 - `streakCalendar.js` → `shop.js`
 - `onboarding.js` → `home.js`
-- `notes.js` → `journal/editor.js`
 - `settings.js` → `onboarding.js`
 
 ## Function Reference (by module file)

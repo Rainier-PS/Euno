@@ -267,7 +267,7 @@ function generateReport() {
     const doc = new jsPDF();
     let y = 20;
     doc.setFontSize(20); doc.setFont('helvetica','bold');
-    doc.text('StudyHub Wellness Report', 105, y, {align:'center'}); y+=10;
+    doc.text('Euno Wellness Report', 105, y, {align:'center'}); y+=10;
     doc.setFontSize(11); doc.setFont('helvetica','normal');
     doc.text(`Generated: ${new Date().toLocaleDateString()}`, 105, y, {align:'center'}); y+=6;
     if (studentName) { doc.text(`Student: ${studentName}`, 105, y, {align:'center'}); y+=6; }

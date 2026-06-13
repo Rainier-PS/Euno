@@ -46,7 +46,7 @@ export function initCountdown() {
         clearInterval(countdownTimer); countdownRunning = false; countdownRemaining = 0;
         showToast('Countdown complete!', 'success');
         if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
-          new Notification('StudyHub', { body: 'Your countdown timer has finished!', icon: '' });
+          new Notification('Euno', { body: 'Your countdown timer has finished!', icon: '' });
         }
         if (toggleBtn) {
           toggleBtn.setAttribute('data-state', 'start');

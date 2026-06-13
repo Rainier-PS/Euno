@@ -282,7 +282,7 @@ export function checkReminders() {
         const msg = r.label ? `Reminder: ${r.label}` : `Reminder for ${r.reminderDate}`;
         showToast(msg, 'success');
         if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
-          new Notification('StudyHub Reminder', { body: msg });
+          new Notification('Euno Reminder', { body: msg });
         }
         changed = true;
         return false;

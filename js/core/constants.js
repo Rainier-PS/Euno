@@ -9,7 +9,7 @@ export const PRIORITY_ORDER = { Urgent: 0, High: 1, Medium: 2, Low: 3 };
 export const ONBOARDING_STEPS = [
   {
     icon: 'auto_stories',
-    title: 'Welcome to StudyHub',
+    title: 'Welcome to Euno',
     body: 'Your all-in-one wellness and study companion. This quick tour highlights the key features.',
     targetSelector: null,
     padding: 0
