@@ -72,12 +72,13 @@ function init() {
 }
 
 function shuffleItems(items) {
-    const copy = [...items];
-    for (let i = copy.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [copy[i], copy[j]] = [copy[j], copy[i]];
-    }
-    return copy;
+    return [...items]
+        .map(item => ({
+            item,
+            random: crypto.getRandomValues(new Uint32Array(1))[0]
+        }))
+        .sort((a, b) => a.random - b.random)
+        .map(entry => entry.item);
 }
 
 function updateDeskCount() {
@@ -88,7 +89,13 @@ function updateDeskCount() {
 
 function renderItems() {
     itemPool.innerHTML = '';
-    shuffleItems(ITEMS).forEach(item => itemPool.appendChild(buildItemEl(item)));
+
+    const shuffledItems = shuffleItems(ITEMS);
+
+    shuffledItems.forEach(item => {
+        itemPool.appendChild(buildItemEl(item));
+    });
+
     updateDeskCount();
 }
 

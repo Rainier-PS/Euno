@@ -256,7 +256,7 @@ Each check-in produces five scores: `stress_score`, `anxiety_score`, `burnout_sc
 | Stress | >= 5 |
 | Anxiety | >= 5 |
 | Burnout | >= 5 |
-| Overthinking | >= 4 |
+| Overthinking | >= 5 |
 | Loneliness | >= 5 |
 
 ### Severity levels

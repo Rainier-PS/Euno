@@ -99,7 +99,7 @@ function renderMoodChart30(checkins) {
   if (!canvas) return;
   const days = [];
   for (let i=29; i>=0; i--) { const d=new Date(); d.setDate(d.getDate()-i); days.push(d.toISOString().slice(0,10)); }
-  const labels = days.map((d,i) => i%5===0 ? new Date(d+'T12:00:00').toLocaleDateString(undefined,{month:'short',day:'numeric'}) : '');
+  const labels = days.map((d,i) => i%3===0 ? new Date(d+'T12:00:00').toLocaleDateString(undefined,{month:'short',day:'numeric'}) : '');
   const data = days.map(d => { const c=checkins.find(x=>x.date===d); return c ? getCheckinWellnessLevel(c) : null; });
   drawLineChart(canvas, labels, data, '30-Day Wellness', MOOD_COLORS[4], WELLNESS_LEVEL_LABELS);
 }
@@ -121,6 +121,10 @@ function renderMoodDistChart(checkins) {
 function drawLineChart(canvas, labels, data, label, color, yLabels) {
   const wrap = canvas.closest('.chart-wrap');
   let W = wrap ? wrap.clientWidth : canvas.offsetWidth;
+
+  if (window.innerWidth <= 768) {
+    W = Math.max(W, labels.length * 80);
+  }
   let H = wrap ? wrap.clientHeight : canvas.offsetHeight;
   if (!W || !H) {
     W = canvas.parentElement ? canvas.parentElement.clientWidth : 600;
@@ -130,6 +134,9 @@ function drawLineChart(canvas, labels, data, label, color, yLabels) {
   if (!H) H = 200;
   canvas.width = W;
   canvas.height = H;
+
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
   const ctx = canvas.getContext('2d');
   const axisLabels = yLabels || MOOD_LABELS;
   const labelFont = '11px DM Sans, sans-serif';
@@ -181,6 +188,10 @@ function drawLineChart(canvas, labels, data, label, color, yLabels) {
 function drawBarChart(canvas, labels, data, colors) {
   const wrap = canvas.closest('.chart-wrap');
   let W = wrap ? wrap.clientWidth : canvas.offsetWidth;
+
+  if (window.innerWidth <= 768) {
+    W = Math.max(W, labels.length * 70);
+  }
   let H = wrap ? wrap.clientHeight : canvas.offsetHeight;
   if (!W || !H) {
     W = canvas.parentElement ? canvas.parentElement.clientWidth : 300;
@@ -190,6 +201,9 @@ function drawBarChart(canvas, labels, data, colors) {
   if (!H) H = 200;
   canvas.width = W;
   canvas.height = H;
+
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
   const ctx = canvas.getContext('2d');
   const pad = { top: 24, right: 22, bottom: 54, left: 40 };
   const chartW = Math.max(0, W - pad.left - pad.right);
