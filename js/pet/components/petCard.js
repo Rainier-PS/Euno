@@ -24,7 +24,16 @@ export function createPetCard() {
 
   function update({ src, isReflecting }) {
     if (src && image.getAttribute("src") !== src) {
-      image.src = src;
+      // Preload image to avoid white flash during src change
+      const preloadImg = new Image();
+      preloadImg.onload = () => {
+        image.src = src;
+      };
+      preloadImg.onerror = () => {
+        // Fallback: set src even if preload fails
+        image.src = src;
+      };
+      preloadImg.src = src;
     }
     card.classList.toggle("is-reflecting", Boolean(isReflecting));
   }

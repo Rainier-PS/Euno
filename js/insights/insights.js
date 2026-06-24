@@ -131,7 +131,13 @@ function drawLineChart(canvas, labels, data, label, color, yLabels) {
   canvas.width = W;
   canvas.height = H;
   const ctx = canvas.getContext('2d');
-  const pad = { top:20, right:20, bottom:30, left:30 };
+  const axisLabels = yLabels || MOOD_LABELS;
+  const labelFont = '11px DM Sans, sans-serif';
+  ctx.font = labelFont;
+  const yLabelStrings = axisLabels.slice(1, 6);
+  const maxLabelWidth = Math.max(...yLabelStrings.map(l => l ? ctx.measureText(l).width : 0));
+  const leftLabelPadding = Math.ceil(maxLabelWidth + 14);
+  const pad = { top: 24, right: 22, bottom: 40, left: Math.max(72, leftLabelPadding) };
   const chartW = W - pad.left - pad.right;
   const chartH = H - pad.top - pad.bottom;
   const xDenom = Math.max(labels.length - 1, 1);
@@ -139,16 +145,19 @@ function drawLineChart(canvas, labels, data, label, color, yLabels) {
   const isDark = document.documentElement.getAttribute('data-theme')==='dark';
   const textColor = isDark ? '#CAC4D0' : '#49454F';
   const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
-  const axisLabels = yLabels || MOOD_LABELS;
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle = textColor;
+  ctx.font = labelFont;
   for (let y=1; y<=5; y++) {
     const yPos = pad.top + chartH - ((y-1)/4)*chartH;
-    ctx.strokeStyle = gridColor; ctx.lineWidth=1;
+    ctx.strokeStyle = gridColor; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(pad.left, yPos); ctx.lineTo(pad.left+chartW, yPos); ctx.stroke();
-    ctx.fillStyle = textColor; ctx.font='10px DM Sans,sans-serif'; ctx.textAlign='right';
-    ctx.fillText(axisLabels[y]||y, pad.left-4, yPos+4);
+    ctx.fillStyle = textColor;
+    ctx.textAlign = 'right';
+    ctx.fillText(axisLabels[y] || y, pad.left - 10, yPos);
   }
-  const validPts = data.map((v,i) => v!==null ? { x: pad.left+(i/xDenom)*chartW, y: pad.top+chartH-((v-1)/4)*chartH } : null);
-  ctx.strokeStyle = color; ctx.lineWidth=2.5; ctx.lineJoin='round';
+  const validPts = data.map((v,i) => v !== null ? { x: pad.left + (i/xDenom) * chartW, y: pad.top + chartH - ((v-1)/4) * chartH } : null);
+  ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
   let started=false;
   ctx.beginPath();
   validPts.forEach((pt,i) => {
@@ -182,29 +191,44 @@ function drawBarChart(canvas, labels, data, colors) {
   canvas.width = W;
   canvas.height = H;
   const ctx = canvas.getContext('2d');
-  const pad = { top:20, right:20, bottom:40, left:30 };
-  const chartW = W - pad.left - pad.right;
+  const pad = { top: 24, right: 22, bottom: 54, left: 40 };
+  const chartW = Math.max(0, W - pad.left - pad.right);
   const chartH = H - pad.top - pad.bottom;
+  const minGap = 10;
+  const minBarWidth = 12;
+  let gap = minGap;
+  let barW = (chartW - gap * (labels.length + 1)) / labels.length;
+  if (barW < minBarWidth) {
+    barW = Math.max(minBarWidth, chartW / labels.length * 0.6);
+    gap = Math.max(4, (chartW - barW * labels.length) / (labels.length + 1));
+  }
+  if (Number.isNaN(gap) || gap < 4) {
+    gap = 4;
+  }
+  if (barW * labels.length + gap * (labels.length + 1) > chartW) {
+    barW = Math.max(minBarWidth, (chartW - gap * (labels.length + 1)) / labels.length);
+  }
   ctx.clearRect(0,0,W,H);
   const isDark = document.documentElement.getAttribute('data-theme')==='dark';
   const textColor = isDark ? '#CAC4D0' : '#49454F';
   const max = Math.max(...data, 1);
-  const barW = chartW / (labels.length * 1.5);
-  const gap = (chartW - barW*labels.length) / (labels.length+1);
   data.forEach((v,i) => {
-    const x = pad.left + gap + i*(barW+gap);
-    const bH = (v/max)*chartH;
+    const x = pad.left + gap + i * (barW + gap);
+    const bH = (v/max) * chartH;
     const y = pad.top + chartH - bH;
     ctx.fillStyle = colors[i] || '#6750A4';
     ctx.beginPath();
-    const r = Math.min(6, barW/2);
-    ctx.moveTo(x+r, y); ctx.lineTo(x+barW-r, y);
-    ctx.arcTo(x+barW, y, x+barW, y+r, r); ctx.lineTo(x+barW, y+bH);
-    ctx.lineTo(x, y+bH); ctx.arcTo(x, y, x+r, y, r); ctx.closePath();
+    const r = Math.min(6, barW / 2);
+    ctx.moveTo(x + r, y); ctx.lineTo(x + barW - r, y);
+    ctx.arcTo(x + barW, y, x + barW, y + r, r); ctx.lineTo(x + barW, y + bH);
+    ctx.lineTo(x, y + bH); ctx.arcTo(x, y, x + r, y, r); ctx.closePath();
     ctx.fill();
-    ctx.fillStyle=textColor; ctx.font='10px DM Sans,sans-serif'; ctx.textAlign='center';
-    if (v>0) ctx.fillText(v, x+barW/2, y-4);
-    ctx.fillText(labels[i], x+barW/2, pad.top+chartH+15);
+    ctx.fillStyle = textColor;
+    ctx.font = `${labels.length > 10 ? 9 : 10}px DM Sans, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    if (v > 0) ctx.fillText(v, x + barW / 2, y - 4);
+    ctx.fillText(labels[i], x + barW / 2, pad.top + chartH + 8);
   });
 }
 

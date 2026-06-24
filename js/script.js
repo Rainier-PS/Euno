@@ -43,13 +43,9 @@ function checkFirstTimeProfile() {
     if (onboardingDone) {
       setTimeout(showProfilePromptToast, 1000);
     } else {
-      const checkInterval = setInterval(() => {
-        const done = getStorage('onboarding_done', false);
-        if (done) {
-          clearInterval(checkInterval);
-          setTimeout(showProfilePromptToast, 1000);
-        }
-      }, 500);
+      window.addEventListener('onboarding-complete', () => {
+        setTimeout(showProfilePromptToast, 1000);
+      }, { once: true });
     }
   }
 }

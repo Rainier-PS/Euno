@@ -105,6 +105,10 @@ export function initOnboarding() {
   const app     = document.getElementById('app');
   if (!overlay) return;
 
+  overlay.style.display = 'none';
+  overlay.setAttribute('aria-hidden', 'true');
+  overlay.classList.remove('active');
+
   initOnboarding.restart = launchTour;
 
   function launchTour() {
@@ -214,6 +218,7 @@ export function initOnboarding() {
     function finish() {
       detachListeners();
       setStorage('onboarding_done', true);
+      window.dispatchEvent(new Event('onboarding-complete'));
       overlay.style.display = 'none';
       overlay.setAttribute('aria-hidden', 'true');
       overlay.classList.remove('active');

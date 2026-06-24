@@ -32,7 +32,7 @@ export const CHALLENGE_THRESHOLDS = {
   stress: 5,
   anxiety: 5,
   burnout: 5,
-  overthinking: 4,
+  overthinking: 5,
   loneliness: 5
 };
 
@@ -48,7 +48,7 @@ const SEVERITY_RANGES = {
   stress: [[0, 1, 'Low'], [2, 3, 'Mild'], [4, 5, 'Moderate'], [6, Infinity, 'High']],
   anxiety: [[0, 1, 'Low'], [2, 3, 'Mild'], [4, 5, 'Moderate'], [6, Infinity, 'High']],
   burnout: [[0, 1, 'Low'], [2, 3, 'Mild'], [4, 5, 'Moderate'], [6, Infinity, 'High']],
-  overthinking: [[0, 1, 'Low'], [2, 2, 'Mild'], [3, 3, 'Moderate'], [4, Infinity, 'High']],
+  overthinking: [[0, 1, 'Low'], [2, 3, 'Mild'], [4, 5, 'Moderate'], [6, Infinity, 'High']],
   loneliness: [[0, 1, 'Low'], [2, 3, 'Mild'], [4, 5, 'Moderate'], [6, Infinity, 'High']]
 };
 
