@@ -19,7 +19,12 @@
 }
 
 #spotlight-hole {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: x 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              y 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              width  0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              rx 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              ry 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .onboarding-tooltip {
@@ -29,35 +34,31 @@
   border-radius: var(--radius-xl);
   padding: 1.5rem 1.75rem 1.25rem;
   box-shadow: var(--elevation-4);
-  max-width: 320px;
+  width: 300px;
+  max-width: calc(100vw - 20px);
   z-index: 401;
   pointer-events: auto;
-  animation: tooltip-enter 0.3s cubic-bezier(0.2, 0, 0, 1);
-  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1), left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: tooltip-enter 0.25s cubic-bezier(0.2, 0, 0, 1);
+  transition: top 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes tooltip-enter {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.96) translateY(4px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 .onboarding-tooltip__title {
   font-family: var(--font-display);
-  font-size: 1.125rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--md-on-surface);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   letter-spacing: -0.01em;
 }
 
 .onboarding-tooltip__body {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: var(--md-on-surface-variant);
   line-height: 1.6;
   margin-bottom: 1rem;
@@ -69,47 +70,50 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 0.75rem;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
+  border-top: 1px solid var(--md-outline-variant);
 }
 
 .onboarding-tooltip__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.625rem;
 }
 
 .onboarding-tooltip__icon {
-  font-size: 1.5rem;
+  font-size: 1.375rem;
   color: var(--md-primary);
 }
 
 .onboarding-tooltip__step-label {
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: var(--md-on-surface-variant);
+  letter-spacing: 0.02em;
 }
 
 .onboarding-tooltip__dots {
   display: flex;
-  gap: 6px;
-  margin-bottom: 1rem;
+  gap: 5px;
+  margin-bottom: 0.875rem;
 }
 
 .ob-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--md-outline-variant);
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
 }
 
 .ob-dot.active {
   background: var(--md-primary);
-  width: 24px;
+  width: 20px;
   border-radius: 4px;
 }
 
@@ -120,7 +124,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 0.25rem;
   transition: color var(--transition);
 }
 
@@ -136,15 +140,15 @@
 
 .onboarding-arrow {
   position: absolute;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   background: var(--md-surface);
   border: 1px solid var(--md-outline-variant);
-  transform: rotate(45deg);
+  pointer-events: none;
 }
 
 .onboarding-arrow--top {
-  bottom: -8px;
+  top: -7px;
   left: 50%;
   transform: translateX(-50%) rotate(45deg);
   border-bottom: none;
@@ -152,7 +156,7 @@
 }
 
 .onboarding-arrow--bottom {
-  top: -8px;
+  bottom: -7px;
   left: 50%;
   transform: translateX(-50%) rotate(45deg);
   border-top: none;
@@ -160,7 +164,7 @@
 }
 
 .onboarding-arrow--left {
-  right: -8px;
+  left: -7px;
   top: 50%;
   transform: translateY(-50%) rotate(45deg);
   border-right: none;
@@ -168,7 +172,7 @@
 }
 
 .onboarding-arrow--right {
-  left: -8px;
+  right: -7px;
   top: 50%;
   transform: translateY(-50%) rotate(45deg);
   border-left: none;
@@ -177,7 +181,16 @@
 
 @media (max-width: 600px) {
   .onboarding-tooltip {
-    max-width: calc(100vw - 2rem);
-    padding: 1.25rem 1.125rem 1rem;
+    width: calc(100vw - 24px);
+    max-width: 380px;
+    padding: 1.125rem 1rem 1rem;
+  }
+
+  .onboarding-tooltip__title {
+    font-size: 0.975rem;
+  }
+
+  .onboarding-tooltip__body {
+    font-size: 0.84rem;
   }
 }

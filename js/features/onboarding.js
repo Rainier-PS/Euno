@@ -2,7 +2,7 @@ import { getStorage, setStorage } from '../core/storage.js';
 import { ONBOARDING_STEPS } from '../core/constants.js';
 import { initHome } from './home.js';
 
-function _obClamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
+function _clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
 
 function _obTarget(selector) {
   if (!selector) return null;
@@ -18,55 +18,26 @@ function _obTarget(selector) {
   return null;
 }
 
-function _obPositionTooltip(tooltip, spotRect) {
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
-  const tt = tooltip.getBoundingClientRect();
-  const GAP = 14;
-  const EDGE = 8;
-
-  let x, y, placement;
-
-  if (spotRect) {
-    const belowY = spotRect.bottom + GAP;
-    const aboveY = spotRect.top  - GAP - tt.height;
-    const rightX = spotRect.right + GAP;
-    const leftX  = spotRect.left  - GAP - tt.width;
-
-    if (belowY + tt.height + EDGE <= vh) {
-      placement = 'bottom';
-      y = belowY;
-      x = _obClamp(spotRect.left + (spotRect.width - tt.width) / 2, EDGE, vw - tt.width - EDGE);
-    } else if (aboveY >= EDGE) {
-      placement = 'top';
-      y = aboveY;
-      x = _obClamp(spotRect.left + (spotRect.width - tt.width) / 2, EDGE, vw - tt.width - EDGE);
-    } else if (rightX + tt.width + EDGE <= vw) {
-      placement = 'right';
-      x = rightX;
-      y = _obClamp(spotRect.top + (spotRect.height - tt.height) / 2, EDGE, vh - tt.height - EDGE);
-    } else {
-      placement = 'left';
-      x = Math.max(EDGE, leftX);
-      y = _obClamp(spotRect.top + (spotRect.height - tt.height) / 2, EDGE, vh - tt.height - EDGE);
-    }
-  } else {
-    placement = 'center';
-    x = _obClamp((vw - tt.width)  / 2, EDGE, vw - tt.width  - EDGE);
-    y = _obClamp((vh - tt.height) / 2, EDGE, vh - tt.height - EDGE);
+function _readRadius(el, w, h) {
+  const cs = window.getComputedStyle(el);
+  function resolve(raw) {
+    if (!raw || raw === '0px') return 0;
+    const px = parseFloat(raw);
+    if (raw.includes('%')) return (px / 100) * Math.min(w, h);
+    return isFinite(px) ? Math.min(px, 9999) : 0;
   }
-
-  tooltip.style.left = x + 'px';
-  tooltip.style.top  = y + 'px';
-  tooltip.style.transform = 'none';
-  tooltip.dataset.placement = placement;
-  return placement;
+  const tl = resolve(cs.borderTopLeftRadius);
+  const tr = resolve(cs.borderTopRightRadius);
+  const br = resolve(cs.borderBottomRightRadius);
+  const bl = resolve(cs.borderBottomLeftRadius);
+  const avg = (tl + tr + br + bl) / 4;
+  const capped = Math.min(avg, w / 2, h / 2);
+  return capped;
 }
 
 function _obUpdateSpotlight(targetEl, padding) {
-  const hole   = document.getElementById('spotlight-hole');
-  const svgEl  = document.getElementById('onboarding-mask');
-  if (!hole || !svgEl) return null;
+  const hole = document.getElementById('spotlight-hole');
+  if (!hole) return null;
 
   if (!targetEl) {
     hole.setAttribute('width', '0');
@@ -79,25 +50,108 @@ function _obUpdateSpotlight(targetEl, padding) {
   const vw  = window.innerWidth;
   const vh  = window.innerHeight;
 
-  const x   = Math.max(0, r.left   - pad);
-  const y   = Math.max(0, r.top    - pad);
-  const x2  = Math.min(vw, r.right  + pad);
-  const y2  = Math.min(vh, r.bottom + pad);
-  const w   = Math.max(0, x2 - x);
-  const h   = Math.max(0, y2 - y);
+  const x  = Math.max(0, r.left   - pad);
+  const y  = Math.max(0, r.top    - pad);
+  const x2 = Math.min(vw, r.right  + pad);
+  const y2 = Math.min(vh, r.bottom + pad);
+  const w  = Math.max(0, x2 - x);
+  const h  = Math.max(0, y2 - y);
 
-  const cs  = window.getComputedStyle(targetEl);
-  const br  = parseFloat(cs.borderRadius) || 0;
-  const rx  = Math.min(br + 4, w / 2, h / 2);
+  const baseRx = _readRadius(targetEl, r.width, r.height);
+  const rx = Math.min(baseRx + pad * 0.5, w / 2, h / 2);
 
-  hole.setAttribute('x',  x);
-  hole.setAttribute('y',  y);
-  hole.setAttribute('width',  w);
+  hole.setAttribute('x', x);
+  hole.setAttribute('y', y);
+  hole.setAttribute('width', w);
   hole.setAttribute('height', h);
   hole.setAttribute('rx', rx);
   hole.setAttribute('ry', rx);
 
   return { left: x, top: y, right: x + w, bottom: y + h, width: w, height: h };
+}
+
+function _obPositionTooltip(tooltip, arrowEl, spotRect) {
+  const vw  = window.innerWidth;
+  const vh  = window.innerHeight;
+  const tt  = tooltip.getBoundingClientRect();
+  const GAP  = 16;
+  const EDGE = 10;
+
+  let x, y, placement;
+
+  if (spotRect) {
+    const spCx = spotRect.left + spotRect.width  / 2;
+    const spCy = spotRect.top  + spotRect.height / 2;
+
+    const roomBelow = vh - spotRect.bottom - GAP;
+    const roomAbove = spotRect.top - GAP;
+    const roomRight = vw - spotRect.right - GAP;
+    const roomLeft  = spotRect.left - GAP;
+
+    if (roomBelow >= tt.height + EDGE) {
+      placement = 'bottom';
+      y = spotRect.bottom + GAP;
+      x = _clamp(spCx - tt.width / 2, EDGE, vw - tt.width - EDGE);
+    } else if (roomAbove >= tt.height + EDGE) {
+      placement = 'top';
+      y = spotRect.top - GAP - tt.height;
+      x = _clamp(spCx - tt.width / 2, EDGE, vw - tt.width - EDGE);
+    } else if (roomRight >= tt.width + EDGE) {
+      placement = 'right';
+      x = spotRect.right + GAP;
+      y = _clamp(spCy - tt.height / 2, EDGE, vh - tt.height - EDGE);
+    } else if (roomLeft >= tt.width + EDGE) {
+      placement = 'left';
+      x = spotRect.left - GAP - tt.width;
+      y = _clamp(spCy - tt.height / 2, EDGE, vh - tt.height - EDGE);
+    } else {
+      placement = 'center';
+      x = _clamp((vw - tt.width)  / 2, EDGE, vw - tt.width  - EDGE);
+      y = _clamp((vh - tt.height) / 2, EDGE, vh - tt.height - EDGE);
+    }
+  } else {
+    placement = 'center';
+    x = _clamp((vw - tt.width)  / 2, EDGE, vw - tt.width  - EDGE);
+    y = _clamp((vh - tt.height) / 2, EDGE, vh - tt.height - EDGE);
+  }
+
+  tooltip.style.left = x + 'px';
+  tooltip.style.top  = y + 'px';
+  tooltip.style.transform = 'none';
+  tooltip.dataset.placement = placement;
+
+  if (arrowEl) {
+    arrowEl.className = 'onboarding-arrow';
+    if (placement === 'bottom') {
+      arrowEl.classList.add('onboarding-arrow--top');
+      if (spotRect) {
+        const spCx = spotRect.left + spotRect.width / 2;
+        const arrowX = _clamp(spCx - x - 8, 16, tt.width - 32);
+        arrowEl.style.left = arrowX + 'px';
+        arrowEl.style.top  = '';
+      }
+    } else if (placement === 'top') {
+      arrowEl.classList.add('onboarding-arrow--bottom');
+      if (spotRect) {
+        const spCx = spotRect.left + spotRect.width / 2;
+        const arrowX = _clamp(spCx - x - 8, 16, tt.width - 32);
+        arrowEl.style.left = arrowX + 'px';
+        arrowEl.style.top  = '';
+      }
+    } else if (placement === 'right') {
+      arrowEl.classList.add('onboarding-arrow--left');
+      arrowEl.style.left = '';
+    } else if (placement === 'left') {
+      arrowEl.classList.add('onboarding-arrow--right');
+      arrowEl.style.left = '';
+    } else {
+      arrowEl.style.display = 'none';
+      return placement;
+    }
+    arrowEl.style.display = '';
+  }
+
+  return placement;
 }
 
 export function initOnboarding() {
@@ -109,27 +163,28 @@ export function initOnboarding() {
   overlay.setAttribute('aria-hidden', 'true');
   overlay.classList.remove('active');
 
-  initOnboarding.restart = launchTour;
-
   function launchTour() {
-    const homeBtn = document.querySelector('[data-page="home"].nav-item') ||
-                    document.querySelector('[data-page="home"].bnav-item');
-    if (homeBtn) homeBtn.click();
-
     if (app) app.style.display = 'flex';
 
     overlay.style.display = '';
     overlay.removeAttribute('aria-hidden');
     overlay.classList.add('active');
 
-    const tooltip  = document.getElementById('onboarding-tooltip');
-    const titleEl  = document.getElementById('onboarding-tooltip-title');
-    const bodyEl   = document.getElementById('onboarding-tooltip-body');
-    const iconEl   = document.getElementById('onboarding-tooltip-icon');
-    const stepEl   = document.getElementById('onboarding-tooltip-step');
-    const dotsEl   = document.getElementById('onboarding-dots');
-    const nextBtn  = document.getElementById('onboarding-next');
-    const skipBtn  = document.getElementById('onboarding-skip');
+    const tooltip = document.getElementById('onboarding-tooltip');
+    const titleEl = document.getElementById('onboarding-tooltip-title');
+    const bodyEl  = document.getElementById('onboarding-tooltip-body');
+    const iconEl  = document.getElementById('onboarding-tooltip-icon');
+    const stepEl  = document.getElementById('onboarding-tooltip-step');
+    const dotsEl  = document.getElementById('onboarding-dots');
+    const nextBtn = document.getElementById('onboarding-next');
+    const skipBtn = document.getElementById('onboarding-skip');
+
+    let arrowEl = tooltip.querySelector('.onboarding-arrow');
+    if (!arrowEl) {
+      arrowEl = document.createElement('div');
+      arrowEl.className = 'onboarding-arrow';
+      tooltip.appendChild(arrowEl);
+    }
 
     const total = ONBOARDING_STEPS.length;
     let current = 0;
@@ -139,8 +194,8 @@ export function initOnboarding() {
     let _keyListener    = null;
 
     function detachListeners() {
-      if (_keyListener)    { document.removeEventListener('keydown', _keyListener);     _keyListener    = null; }
-      if (_resizeListener) { window.removeEventListener('resize', _resizeListener);     _resizeListener = null; }
+      if (_keyListener)    { document.removeEventListener('keydown', _keyListener);         _keyListener    = null; }
+      if (_resizeListener) { window.removeEventListener('resize', _resizeListener);         _resizeListener = null; }
       if (_orientListener) { window.removeEventListener('orientationchange', _orientListener); _orientListener = null; }
     }
 
@@ -156,13 +211,27 @@ export function initOnboarding() {
     const freshSkip = document.getElementById('onboarding-skip');
 
     dotsEl.innerHTML = ONBOARDING_STEPS.map((_, i) =>
-      `<button class="ob-dot${i === 0 ? ' active' : ''}" data-i="${i}"
-        role="tab" aria-selected="${i === 0}" aria-label="Step ${i+1} of ${total}"></button>`
+      `<button class="ob-dot${i === 0 ? ' active' : ''}" data-i="${i}" role="tab" aria-selected="${i === 0}" aria-label="Step ${i + 1} of ${total}"></button>`
     ).join('');
 
     dotsEl.querySelectorAll('.ob-dot').forEach(dot => {
       dot.addEventListener('click', () => goStep(parseInt(dot.dataset.i)));
     });
+
+    function updateLayout() {
+      const s = ONBOARDING_STEPS[current];
+      const targetEl = _obTarget(s.targetSelector);
+
+      if (targetEl) {
+        targetEl.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
+      }
+
+      requestAnimationFrame(() => {
+        const spotRect = _obUpdateSpotlight(targetEl, s.padding);
+        const tt = document.getElementById('onboarding-tooltip');
+        if (tt) _obPositionTooltip(tt, arrowEl, spotRect);
+      });
+    }
 
     function renderStep(n) {
       const s = ONBOARDING_STEPS[n];
@@ -174,16 +243,14 @@ export function initOnboarding() {
 
       const nb2 = document.getElementById('onboarding-next');
       if (nb2) {
-        const isLast = n === total - 1;
-        nb2.innerHTML = isLast
+        nb2.innerHTML = n === total - 1
           ? `Get Started<span class="material-icons-round" aria-hidden="true">check</span>`
           : `Next<span class="material-icons-round" aria-hidden="true">arrow_forward</span>`;
       }
 
       dotsEl.querySelectorAll('.ob-dot').forEach((dot, i) => {
-        const active = i === n;
-        dot.classList.toggle('active', active);
-        dot.setAttribute('aria-selected', String(active));
+        dot.classList.toggle('active', i === n);
+        dot.setAttribute('aria-selected', String(i === n));
       });
 
       const tt = document.getElementById('onboarding-tooltip');
@@ -193,21 +260,7 @@ export function initOnboarding() {
         tt.style.animation = '';
       }
 
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          const targetEl = _obTarget(s.targetSelector);
-
-          if (targetEl) {
-            targetEl.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
-          }
-
-          requestAnimationFrame(() => {
-            const spotRect = _obUpdateSpotlight(targetEl, s.padding);
-            const tooltip2 = document.getElementById('onboarding-tooltip');
-            if (tooltip2) _obPositionTooltip(tooltip2, spotRect);
-          });
-        });
-      });
+      requestAnimationFrame(() => requestAnimationFrame(updateLayout));
     }
 
     function goStep(n) {
@@ -234,7 +287,7 @@ export function initOnboarding() {
     });
     freshSkip && freshSkip.addEventListener('click', finish);
 
-    _keyListener = function onKeyDown(e) {
+    _keyListener = function(e) {
       if (!overlay || overlay.style.display === 'none') return;
       if (e.key === 'Escape') { finish(); }
       else if (e.key === 'ArrowRight') { e.preventDefault(); current < total - 1 ? goStep(current + 1) : finish(); }
@@ -242,14 +295,9 @@ export function initOnboarding() {
     };
     document.addEventListener('keydown', _keyListener);
 
-    _resizeListener = function onResize() {
+    _resizeListener = function() {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        const s = ONBOARDING_STEPS[current];
-        const targetEl = _obTarget(s.targetSelector);
-        const spotRect = _obUpdateSpotlight(targetEl, s.padding);
-        _obPositionTooltip(document.getElementById('onboarding-tooltip'), spotRect);
-      }, 80);
+      resizeTimer = setTimeout(updateLayout, 80);
     };
     _orientListener = _resizeListener;
     window.addEventListener('resize', _resizeListener);
@@ -265,7 +313,10 @@ export function initOnboarding() {
   }
 
   const seen = getStorage('onboarding_done', false);
-  if (seen) {
+  const forceLaunch = sessionStorage.getItem('launch_tour') === '1';
+  if (forceLaunch) sessionStorage.removeItem('launch_tour');
+
+  if (seen && !forceLaunch) {
     overlay.style.display = 'none';
     overlay.setAttribute('aria-hidden', 'true');
     overlay.classList.remove('active');
@@ -274,4 +325,3 @@ export function initOnboarding() {
   }
   launchTour();
 }
-

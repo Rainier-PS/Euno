@@ -25,32 +25,39 @@ export const ONBOARDING_STEPS = [
     padding: 0
   },
   {
-    icon: 'home',
-    title: 'Your Dashboard',
-    body: 'See today\'s mood, habit progress, and quick actions at a glance every day.',
-    targetSelector: '#page-home .page-inner',
-    padding: 8
-  },
-  {
-    icon: 'navigation',
-    title: 'Navigation',
-    body: 'Use the sidebar (desktop) or bottom bar (mobile) to move between all sections of the app.',
-    targetSelector: '#sidebar, #bottom-nav',
-    padding: 8
+    icon: 'smart_toy',
+    title: 'Your Wellness Companion',
+    body: 'Euno the pet reflects your emotional state. Check in daily and watch how Euno responds to your wellbeing.',
+    targetSelector: '.pet-card__stage, #euno-app',
+    padding: 16
   },
   {
     icon: 'sentiment_satisfied',
     title: 'Daily Check-In',
-    body: 'Log your daily mental health check-in across six dimensions to track emotional wellbeing over time.',
-    targetSelector: '#sidebar, #bottom-nav',
-    padding: 8
+    body: 'Tap Check-In to log your mood and emotional dimensions. It only takes a minute.',
+    targetSelector: 'a[href="checkin.html"].nav-item, a[href="checkin.html"].bnav-item',
+    padding: 6
+  },
+  {
+    icon: 'menu_book',
+    title: 'Diary',
+    body: 'Write private entries with full Markdown support. Your thoughts, saved locally and never shared.',
+    targetSelector: 'a[href="diary.html"].nav-item, a[href="diary.html"].bnav-item',
+    padding: 6
+  },
+  {
+    icon: 'extension',
+    title: 'Coping Games',
+    body: 'Five short interactive games designed to help you manage stress, anxiety, and overthinking.',
+    targetSelector: 'a[href="games.html"].nav-item, a[href="games.html"].bnav-item, .bnav-center',
+    padding: 6
   },
   {
     icon: 'insights',
-    title: 'Insights & Wellness',
-    body: 'See your progress trends, generate wellness reports, and explore wellness tools — all in one place.',
-    targetSelector: '#sidebar, #bottom-nav',
-    padding: 8
+    title: 'Insights',
+    body: 'See your mood trends, wellness scores, and download a full PDF report of your progress.',
+    targetSelector: '#home-insight-teaser, #insight-teaser-content',
+    padding: 12
   }
 ];
 

@@ -84,7 +84,7 @@ export function initSettings() {
   });
   document.getElementById('restart-onboarding') && document.getElementById('restart-onboarding').addEventListener('click', () => {
     setStorage('onboarding_done', false);
-    if (initOnboarding.restart) initOnboarding.restart();
-    else location.reload();
+    sessionStorage.setItem('launch_tour', '1');
+    window.location.href = 'index.html';
   });
 }

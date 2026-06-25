@@ -312,10 +312,11 @@
 }
 
 .about-big-icon {
-  font-size: 4rem;
-  color: var(--md-primary);
   display: block;
-  margin-bottom: 1rem;
+  width: 4rem;
+  height: 4rem;
+  object-fit: contain;
+  margin: 0 auto 1rem;
 }
 
 .feature-list {
