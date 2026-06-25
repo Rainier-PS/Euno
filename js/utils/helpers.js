@@ -3,19 +3,6 @@ export function sanitize(str) {
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
-function safeUrl(url, { imagesOnly = false } = {}) {
-  if (typeof url !== 'string') return '';
-  const trimmed = url.trim();
-  if (!trimmed) return '';
-  if (/^javascript:/i.test(trimmed) || /^vbscript:/i.test(trimmed)) return '';
-  if (trimmed.startsWith('data:')) {
-    return imagesOnly && /^data:image\//i.test(trimmed) ? trimmed : '';
-  }
-  if (/^https?:\/\//i.test(trimmed)) return imagesOnly ? '' : trimmed;
-  if (trimmed.startsWith('//')) return '';
-  return trimmed;
-}
-
 export function sanitizeNum(n, min, max) {
   const v = parseInt(n, 10);
   if (isNaN(v)) return min;
@@ -32,33 +19,23 @@ export function sanitizeTime(s) {
   return /^\d{2}:\d{2}$/.test(s) ? s : '';
 }
 
-export function parseMarkdown(md) {
-  if (!md) return '';
-  let html = md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  const codeBlocks = [];
-  html = html.replace(/```([\s\S]*?)```/g, (match, code) => {
-    codeBlocks.push(`<pre><code>${code}</code></pre>`);
-    return `\n@@CODEBLOCK_${codeBlocks.length - 1}@@\n`;
-  });
-  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, alt, src) => {
-    const safeSrc = safeUrl(src, { imagesOnly: true });
-    return safeSrc ? `<img alt="${alt}" src="${safeSrc}">` : '';
-  }).replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, href) => {
-    const safeHref = safeUrl(href);
-    return safeHref ? `<a href="${safeHref}" target="_blank" rel="noopener noreferrer">${label}</a>` : label;
-  }).replace(/^### (.+)$/gm,'<h3>$1</h3>').replace(/^## (.+)$/gm,'<h2>$1</h2>').replace(/^# (.+)$/gm,'<h1>$1</h1>').replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>').replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>').replace(/`([^`]+)`/g,'<code>$1</code>').replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>').replace(/^---+$/gm,'<hr>').replace(/^\d+\. (.+)$/gm,'<li class="ol-item">$1</li>').replace(/^[-*] (.+)$/gm,'<li class="ul-item">$1</li>');
-  html = html.replace(/(<li class="ol-item">.*?<\/li>(\n|$))+/g, m => '<ol>' + m.replace(/ class="ol-item"/g,'') + '</ol>');
-  html = html.replace(/(<li class="ul-item">.*?<\/li>(\n|$))+/g, m => '<ul>' + m.replace(/ class="ul-item"/g,'') + '</ul>');
-  html = html.split('\n').map(line => {
-    const trimmed = line.trim();
-    if (!trimmed) return '';
-    if (/^<(h[123]|ul|ol|li|blockquote|hr)/.test(trimmed) || trimmed.startsWith('@@CODEBLOCK_')) return line;
-    return '<p>' + line + '</p>';
-  }).filter(Boolean).join('');
-  codeBlocks.forEach((block, idx) => {
-    html = html.replace(`<p>@@CODEBLOCK_${idx}@@</p>`, block).replace(`@@CODEBLOCK_${idx}@@`, block);
-  });
-  return html;
+const md =
+  typeof window !== 'undefined' && window.markdownit
+    ? window.markdownit({
+      html: false,
+      linkify: true,
+      breaks: true
+    })
+    : null;
+
+export function parseMarkdown(text) {
+  if (!text) return '';
+
+  if (!md) {
+    return sanitize(text).replace(/\n/g, '<br>');
+  }
+
+  return md.render(text);
 }
 
 export function debounce(fn, ms) {

@@ -47,15 +47,17 @@ export function showMessage(message, expression) {
 function showDefault() {
   stopReflection();
   setCurrentState(PET_STATES.DEFAULT);
-  setExpression("neutral");
-  paint("neutral", DEFAULT_MESSAGE);
+
+  setExpression("happy");
+  paint("happy", DEFAULT_MESSAGE);
 }
 
 function showFinal() {
   stopReflection();
   setCurrentState(PET_STATES.FINAL);
-  setExpression("happy");
-  paint("happy", FINAL_MESSAGE);
+
+  setExpression("neutral");
+  paint("neutral", FINAL_MESSAGE);
 }
 
 function rotateReflection() {

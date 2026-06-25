@@ -116,10 +116,10 @@ const EMOTION_SCORING = {
 };
 const STRESS_PTS   = { 1:0, 2:1, 3:2, 4:3, 5:4 };
 const WORRY_PTS    = { 1:0, 2:1, 3:2, 4:3, 5:4 };
-const THOUGHTLOOP  = { 1:0, 2:1, 3:2, 4:3, 5:4 };
+const THOUGHTLOOP  = { 1:0, 2:2, 3:4, 4:6, 5:8 };
 const ENERGY_PTS   = { 5:0, 4:0, 3:1, 2:3, 1:4 };
 const SOCIAL_PTS   = { 5:0, 4:0, 3:1, 2:3, 1:4 };
-const THRESHOLDS   = { stress:5, anxiety:5, burnout:5, overthinking:4, loneliness:5 };
+const THRESHOLDS   = { stress:5, anxiety:5, burnout:5, overthinking:5, loneliness:5 };
 
 function calculateScores(entry) {
   let s=0, a=0, b=0, o=0, l=0;
@@ -145,13 +145,18 @@ function detectChallenges(scores) {
   return out;
 }
 
-function getSeverityLabel(score, dim) {
-  const ranges = {
-    default:      [[0,1,"Low"],[2,3,"Mild"],[4,5,"Moderate"],[6,Infinity,"High"]],
-    overthinking: [[0,1,"Low"],[2,2,"Mild"],[3,3,"Moderate"],[4,Infinity,"High"]]
-  };
-  const map = dim === "overthinking" ? ranges.overthinking : ranges.default;
-  for (const [min,max,label] of map) { if (score>=min && score<=max) return label; }
+function getSeverityLabel(score) {
+  const ranges = [
+    [0, 1, "Low"],
+    [2, 3, "Mild"],
+    [4, 5, "Moderate"],
+    [6, Infinity, "High"]
+  ];
+
+  for (const [min, max, label] of ranges) {
+    if (score >= min && score <= max) return label;
+  }
+
   return "High";
 }
 
