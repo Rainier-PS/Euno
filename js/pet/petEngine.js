@@ -8,8 +8,8 @@ import { getCurrentWellnessState, deriveHighConditions } from "./wellnessAdapter
 import { PET_STATES, getState, setCurrentState, setExpression } from "./petState.js";
 import { statusLabelFor } from "./petRenderer.js";
 
-const ROTATION_INTERVAL_MS = 3000;
-const DEFAULT_HOLD_MS = 1500;
+const ROTATION_INTERVAL_MS = 4000;
+const REFLECTION_TOTAL_MS  = 3 * 60 * 1000;
 
 let petCardRef = null;
 let speechBubbleRef = null;
@@ -83,14 +83,11 @@ export function startReflection(conditions) {
 
   rotateReflection();
 
-  if (queue.length > 1) {
-    state.reflectionRotationTimer = window.setInterval(rotateReflection, ROTATION_INTERVAL_MS);
-  }
+  state.reflectionRotationTimer = window.setInterval(rotateReflection, ROTATION_INTERVAL_MS);
 
-  const totalDuration = queue.length * ROTATION_INTERVAL_MS;
   state.reflectionTimer = window.setTimeout(() => {
     showFinal();
-  }, totalDuration);
+  }, REFLECTION_TOTAL_MS);
 }
 
 export function stopReflection() {
@@ -118,8 +115,7 @@ export function refreshFromWellnessData() {
   const highConditions = deriveHighConditions(wellnessState);
 
   if (highConditions.length) {
-    showDefault();
-    window.setTimeout(() => startReflection(highConditions), DEFAULT_HOLD_MS);
+    startReflection(highConditions);
   } else {
     showFinal();
   }
