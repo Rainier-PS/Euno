@@ -10,6 +10,7 @@
 
   let _diaryState = { query: '', sort: 'date-desc' };
   let diaryDraftTimer = null;
+  let _viewingMarkdown = '';
 
   export function initDiaryEditor() {
     const textarea = document.getElementById('diary-entry');
@@ -63,12 +64,25 @@
 
     const diaryViewModal = document.getElementById('diary-view-modal');
     const diaryViewClose = document.getElementById('diary-view-close');
+    const diaryViewCopy = document.getElementById('diary-view-copy');
 
     function closeDiaryModal() {
       diaryViewModal?.classList.remove('open');
+      _viewingMarkdown = '';
     }
 
     diaryViewClose?.addEventListener('click', closeDiaryModal);
+
+    diaryViewCopy?.addEventListener('click', () => {
+      if (!_viewingMarkdown) return;
+      navigator.clipboard.writeText(_viewingMarkdown).then(() => {
+        diaryViewCopy.classList.add('copied');
+        showToast('Copied to clipboard!', 'success');
+        setTimeout(() => diaryViewCopy.classList.remove('copied'), 2000);
+      }).catch(() => {
+        showToast('Failed to copy.', 'error');
+      });
+    });
 
     diaryViewModal?.addEventListener('click', e => {
       if (e.target === diaryViewModal) {
@@ -194,31 +208,41 @@
       const date = sanitizeDate((diaryDateHidden && diaryDateHidden.value) || todayStr()) || todayStr();
       const text = textarea ? textarea.value.trim().slice(0,10000) : '';
       if (!text) { showToast('Write something first!', 'error'); return; }
-      const diarys = getStorage('diarys', {});
-      const isNewEntry = !diarys[date];
-
-      diarys[date] = {
-        markdown: text,
-        html: parseMarkdown(text)
-      };
-
-      setStorage('diarys', diarys);
-
-      if (isNewEntry) {
-        addCoins(8, 'Diary Entry');
-      }
       const jLabelInput = document.getElementById('diary-label-input');
       const diaryMeta = getStorage('diary_meta', {});
-      if (!diaryMeta[date]) diaryMeta[date] = {};
-      const jLabels = jLabelInput ? jLabelInput.value.split(',').map(l => l.trim().slice(0,30)).filter(Boolean).slice(0,8) : [];
-      diaryMeta[date].labels = jLabels;
-      diaryMeta[date].title = diaryTitle ? diaryTitle.value.trim().slice(0, 120) : '';
-      diaryMeta[date].created_at = diaryMeta[date].created_at || Date.now();
-      diaryMeta[date].updated_at = Date.now();
-      setStorage('diary_meta', diaryMeta);
+
+      if (_editingDiaryDate) {
+        const diarys = getStorage('diarys', {});
+        diarys[_editingDiaryDate] = { markdown: text, html: parseMarkdown(text) };
+        setStorage('diarys', diarys);
+        if (!diaryMeta[_editingDiaryDate]) diaryMeta[_editingDiaryDate] = {};
+        const jLabels = jLabelInput ? jLabelInput.value.split(',').map(l => l.trim().slice(0,30)).filter(Boolean).slice(0,8) : [];
+        diaryMeta[_editingDiaryDate].labels = jLabels;
+        diaryMeta[_editingDiaryDate].title = diaryTitle ? diaryTitle.value.trim().slice(0,120) : '';
+        diaryMeta[_editingDiaryDate].updated_at = Date.now();
+        setStorage('diary_meta', diaryMeta);
+        try { localStorage.removeItem('diary_draft_' + _editingDiaryDate); } catch {}
+      } else {
+        const entryId = date + '_' + Date.now();
+        const diarys = getStorage('diarys', {});
+        diarys[entryId] = { markdown: text, html: parseMarkdown(text) };
+        setStorage('diarys', diarys);
+        if (!diaryMeta[entryId]) diaryMeta[entryId] = {};
+        const jLabels = jLabelInput ? jLabelInput.value.split(',').map(l => l.trim().slice(0,30)).filter(Boolean).slice(0,8) : [];
+        diaryMeta[entryId].labels = jLabels;
+        diaryMeta[entryId].title = diaryTitle ? diaryTitle.value.trim().slice(0,120) : '';
+        diaryMeta[entryId].date = date;
+        diaryMeta[entryId].created_at = Date.now();
+        diaryMeta[entryId].updated_at = Date.now();
+        setStorage('diary_meta', diaryMeta);
+        try { localStorage.removeItem('diary_draft_' + date); } catch {}
+        addCoins(8, 'Diary Entry');
+      }
+
       if (jLabelInput) jLabelInput.value = '';
       if (diaryTitle) diaryTitle.value = '';
-      try { localStorage.removeItem('diary_draft_' + date); } catch {}
+      if (textarea) { textarea.value = ''; if (diaryCount) diaryCount.textContent = '0 / 10000'; }
+      if (preview) preview.innerHTML = '';
       setDraftStatus(draftStatus,'');
       _diaryClearEditMode();
       showToast('Diary entry saved!', 'success');
@@ -230,17 +254,11 @@
       if (_diaryHasChanges()) {
         if (!confirm('Discard changes to this diary entry?')) return;
       }
-      if (_editingDiaryDate && _editingDiaryOriginal) {
-        if (textarea) { textarea.value = _editingDiaryOriginal.content; if (diaryCount) diaryCount.textContent = textarea.value.length + ' / 10000'; }
-        const jLabelInput = document.getElementById('diary-label-input');
-        if (jLabelInput) jLabelInput.value = _editingDiaryOriginal.labels;
-        if (diaryTitle) diaryTitle.value = _editingDiaryOriginal.title || '';
-      } else {
-        if (textarea) { textarea.value = ''; if (diaryCount) diaryCount.textContent = '0 / 10000'; }
-        const jLabelInput = document.getElementById('diary-label-input');
-        if (jLabelInput) jLabelInput.value = '';
-        if (diaryTitle) diaryTitle.value = '';
-      }
+      if (textarea) { textarea.value = ''; if (diaryCount) diaryCount.textContent = '0 / 10000'; }
+      const jLabelInput = document.getElementById('diary-label-input');
+      if (jLabelInput) jLabelInput.value = '';
+      if (diaryTitle) diaryTitle.value = '';
+      if (preview) preview.innerHTML = '';
       setDraftStatus(draftStatus,'');
       _diaryClearEditMode();
     });
@@ -286,16 +304,18 @@
     const diarys = getStorage('diarys',{});
     const diaryMeta = getStorage('diary_meta', {});
 
-    const allEntries = Object.entries(diarys).map(([date, entry]) => {
+    const allEntries = Object.entries(diarys).map(([id, entry]) => {
 
       const markdown =
         typeof entry === 'string'
           ? entry
           : entry.markdown || '';
 
-      const meta = diaryMeta[date] || {};
+      const meta = diaryMeta[id] || {};
+      const date = meta.date || id.slice(0, 10);
 
       return {
+        id,
         date,
         text: markdown,
         title: meta.title || '',
@@ -325,7 +345,7 @@
       return;
     }
 
-    el.innerHTML = entries.map(({ date, text, title, labels, reminder }) => `
+    el.innerHTML = entries.map(({ id, date, text, title, labels, reminder }) => `
       <div class="diary-item" role="article">
         <div class="diary-item-header">
           <div>
@@ -333,32 +353,36 @@
             <div class="diary-item-date">${sanitize(formatDateDisplay(date))}</div>
           </div>
           <div class="diary-item-actions">
-            <button class="diary-action-btn view" data-date="${sanitize(date)}" title="View"><span class="material-icons-round">visibility</span></button>
-            <button class="diary-action-btn edit" data-date="${sanitize(date)}" aria-label="Edit entry" title="Edit"><span class="material-icons-round" aria-hidden="true">edit</span></button>
-            <button class="diary-action-btn del" data-date="${sanitize(date)}" aria-label="Delete entry" title="Delete"><span class="material-icons-round" aria-hidden="true">delete</span></button>
+            <button class="diary-action-btn view" data-id="${sanitize(id)}" title="View"><span class="material-icons-round">visibility</span></button>
+            <button class="diary-action-btn edit" data-id="${sanitize(id)}" aria-label="Edit entry" title="Edit"><span class="material-icons-round" aria-hidden="true">edit</span></button>
+            <button class="diary-action-btn del" data-id="${sanitize(id)}" aria-label="Delete entry" title="Delete"><span class="material-icons-round" aria-hidden="true">delete</span></button>
           </div>
         </div>
         ${labels.length ? `<div class="item-labels">${labels.map(l=>`<span class="item-label"><span class="material-icons-round" aria-hidden="true" style="font-size:0.75rem;vertical-align:middle">label</span> ${sanitize(l)}</span>`).join('')}</div>` : ''}
         ${reminder ? `<div class="item-reminder"><span class="material-icons-round" aria-hidden="true" style="font-size:0.95rem">alarm</span>${sanitize(formatDateDisplay(reminder))}</div>` : ''}
-        <div class="diary-item-preview">${sanitize(text.slice(0,150))}${text.length>150?'…':''}</div>
+        <div class="diary-item-preview md-preview">${parseMarkdown(text.slice(0,150))}${text.length>150?'<span class="diary-item-ellipsis">…</span>':''}</div>
       </div>`).join('');
 
     el.querySelectorAll('.diary-action-btn.edit').forEach(btn => {
       btn.addEventListener('click', () => {
-        const date = btn.dataset.date;
-        const dd = document.getElementById('diary-date'); if (dd) dd.value = formatDateDisplay(date);
-        const dh = document.getElementById('diary-date-value'); if (dh) dh.value = date;
+        const id = btn.dataset.id;
         const diaryMeta = getStorage('diary_meta', {});
-        const meta = diaryMeta[date] || {};
+        const meta = diaryMeta[id] || {};
+        const entryDate = meta.date || id.slice(0, 10);
+        const dd = document.getElementById('diary-date'); if (dd) dd.value = formatDateDisplay(entryDate);
+        const dh = document.getElementById('diary-date-value'); if (dh) dh.value = entryDate;
         const jLabelInput = document.getElementById('diary-label-input');
         const diaryTitleEl = document.getElementById('diary-title');
         if (jLabelInput) jLabelInput.value = (meta.labels || []).join(', ');
         if (diaryTitleEl) diaryTitleEl.value = meta.title || '';
-        loadDiaryEntry(date);
         const diarys = getStorage('diarys', {});
+        const entry = diarys[id];
+        const markdown = typeof entry === 'string' ? entry : entry?.markdown || '';
+        const textarea = document.getElementById('diary-entry');
+        const diaryCount = document.getElementById('diary-count');
+        if (textarea) { textarea.value = markdown; if (diaryCount) diaryCount.textContent = markdown.length + ' / 10000'; }
         if (initDiaryEditor._setEditMode) {
-          const entry = diarys[date]; const markdown = typeof entry === 'string' ? entry : entry?.markdown || '';
-          initDiaryEditor._setEditMode(date, markdown, (meta.labels || []).join(', '), meta.title || '');
+          initDiaryEditor._setEditMode(id, markdown, (meta.labels || []).join(', '), meta.title || '');
         }
         const jTab = document.querySelector('.tab[data-tab="diary"]'); if (jTab) jTab.click();
         const je = document.getElementById('diary-entry'); if (je) je.scrollIntoView({behavior:'smooth'});
@@ -370,8 +394,8 @@
         const diarys = getStorage('diarys', {});
         const diaryMeta = getStorage('diary_meta', {});
 
-        delete diarys[btn.dataset.date];
-        delete diaryMeta[btn.dataset.date];
+        delete diarys[btn.dataset.id];
+        delete diaryMeta[btn.dataset.id];
 
         setStorage('diarys', diarys);
         setStorage('diary_meta', diaryMeta);
@@ -381,10 +405,10 @@
     });
     el.querySelectorAll('.diary-action-btn.view').forEach(btn => {
       btn.addEventListener('click', () => {
-        const date = btn.dataset.date;
+        const id = btn.dataset.id;
         const diarys = getStorage('diarys', {});
         const diaryMeta = getStorage('diary_meta', {});
-        const entry = diarys[date];
+        const entry = diarys[id];
 
         if (!entry) return;
 
@@ -393,9 +417,9 @@
             ? entry
             : entry.markdown || '';
 
-        const title =
-          diaryMeta[date]?.title ||
-          formatDateDisplay(date);
+        const meta = diaryMeta[id] || {};
+        const entryDate = meta.date || id.slice(0, 10);
+        const title = meta.title || formatDateDisplay(entryDate);
 
         const modal = document.getElementById('diary-view-modal');
         const titleEl = document.getElementById('diary-view-title');
@@ -405,6 +429,7 @@
 
         titleEl.textContent = title;
         bodyEl.innerHTML = `<div class="md-preview">${parseMarkdown(markdown)}</div>`;
+        _viewingMarkdown = markdown;
 
         modal.classList.add('open');
       });

@@ -124,19 +124,7 @@
 }
 
 .nav-indicator {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%) scaleY(0);
-  width: 4px;
-  height: 70%;
-  background: var(--md-primary);
-  border-radius: 0 4px 4px 0;
-  transition: transform var(--transition-spring);
-}
-
-.nav-item.active .nav-indicator {
-  transform: translateY(-50%) scaleY(1);
+  display: none;
 }
 
 .nav-item.active {
