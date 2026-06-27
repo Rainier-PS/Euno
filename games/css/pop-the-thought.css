@@ -864,6 +864,19 @@ body {
   text-align: left;
 }
 
+/* Desktop: start & game-over overlays cover the full viewport below the top bar */
+@media (min-width: 768px) {
+  #start-screen,
+  #game-over-screen {
+    position: fixed;
+    top: var(--bar-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+  }
+}
+
 @media (max-width: 960px) {
   :root {
     --sidebar-width: 240px;
